@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && mkdir -p dist/.catalyst && printf 'framework = \"static\"\\ndeployment_name = \"default\"\\n' > dist/.catalyst/slate-config.toml",
+    "build": "tsc -b && vite build && mkdir -p dist/.catalyst && printf 'framework = \"react-vite\"\\ndeployment_name = \"default\"\\n' > dist/.catalyst/slate-config.toml",
     "lint": "NODE_OPTIONS=--max-old-space-size=512 eslint src/ --format stylish",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit"
