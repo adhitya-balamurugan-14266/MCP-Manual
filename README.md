@@ -1,13 +1,13 @@
 # Zoho MCP Interactive Manual
 
-An interactive web reference for exploring MCP (Model Context Protocol) tools across the Zoho ecosystem and third-party ManageEngine services. Browse every available tool, read service overviews, and discover real-world automation use cases — all in one place.
+An interactive web reference for exploring MCP (Model Context Protocol) tools across the Zoho ecosystem and beyond. Browse every available tool, read service overviews, and discover real-world automation use cases — all in one place.
 
 ## Overview
 
-The Zoho MCP Interactive Manual gives developers and AI practitioners a structured, searchable view of every MCP tool exposed by Zoho and ManageEngine services. It is designed to complement the Zoho MCP server and help teams quickly identify which tools to use for a given workflow.
+The Zoho MCP Interactive Manual gives developers and AI practitioners a structured, searchable view of every MCP tool exposed by Zoho and connected services. It is designed to complement the Zoho MCP server and help teams quickly identify which tools to use for a given workflow.
 
-- **56 services** covered across Zoho and ManageEngine
-- **8,664+ MCP tools** documented with names and purposes
+- **57 services** covered across Zoho and Beyond Zoho
+- **8,787+ MCP tools** documented with names and purposes
 - Per-service **About**, **Tool List**, and **Common Usecases** tabs
 - Full-text **search** across service names and tool names
 - **Light and dark mode** with branded service logos
@@ -17,8 +17,8 @@ The Zoho MCP Interactive Manual gives developers and AI practitioners a structur
 ### Zoho Services
 Bigin, Catalyst by Zoho, Zoho Analytics, Zoho Apptics, Zoho Assist, Zoho Backstage, Zoho Billing, Zoho Bookings, Zoho Books, Zoho Calendar, Zoho Cliq, Zoho CommandCenter, Zoho Commerce, Zoho Connect, Zoho Creator, Zoho CRM, Zoho Dataprep, Zoho Desk, Zoho Directory, Zoho ERP, Zoho Expense, Zoho Inventory, Zoho Invoice, Zoho IoT, Zoho Learn, Zoho Lens, Zoho Mail, Zoho Meeting, Zoho Notebook, Zoho One, Zoho Payments, Zoho Payroll, Zoho People, Zoho POS, Zoho Procurement, Zoho Projects, Zoho Recruit, Zoho SalesIQ, Zoho Sheet, Zoho Show, Zoho Sign, Zoho Social, Zoho Sprints, Zoho Survey, Zoho Tables, Zoho Vertical Studio, Zoho Webinar, Zoho WorkDrive, Zoho Writer
 
-### Third-Party (ManageEngine) Services
-CloudSpend, EndpointCentral, Log360 Cloud, MDM (Mobile Device Manager Plus), Qntrl, SDP on Demand, Site 24x7
+### Beyond Zoho Services
+CloudSpend, EndpointCentral, Log360 Cloud, MDM (Mobile Device Manager Plus), Qntrl, Vani, SDP on Demand, Site 24x7
 
 ## Tech Stack
 
@@ -81,11 +81,11 @@ code/
 ├── src/
 │   ├── components/
 │   │   ├── ZohoServicePanel.tsx         # Zoho services browser
-│   │   ├── ThirdPartyServicePanel.tsx   # ManageEngine services browser
+│   │   ├── ThirdPartyServicePanel.tsx   # Beyond Zoho services browser
 │   │   └── ui/                          # shadcn/ui primitives
 │   ├── pages/
 │   │   ├── ZohoServicesPage.tsx
-│   │   └── ThirdPartyServicesPage.tsx
+│   │   └── BeyondZohoServicesPage.tsx
 │   └── App.tsx                          # Home / landing page
 ├── sync-tools.mjs       # Developer script to sync a service's tool list from a JSON spec
 ├── catalyst.json        # Catalyst Slate + Functions configuration
