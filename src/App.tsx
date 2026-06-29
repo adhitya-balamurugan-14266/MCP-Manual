@@ -65,7 +65,7 @@ function App() {
         {/* Hero */}
         <section className="space-y-4 animate-fade-in">
           <h1 className="text-4xl font-bold tracking-tight">
-            Zoho MCP Interactive Manual
+            Zoho MCP Tool Manual
           </h1>
           <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed">
             Discover the MCP tools available for Zoho services and learn how to power AI-driven workflows across the Zoho ecosystem.
