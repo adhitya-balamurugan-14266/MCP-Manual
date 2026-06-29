@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { BottomActions } from '@/components/BottomActions';
 
-export function ThirdPartyServicesPage() {
+export function BeyondZohoServicesPage() {
   const [dark, setDark] = useState(
     () => document.documentElement.classList.contains('dark')
   );
@@ -83,9 +83,9 @@ export function ThirdPartyServicesPage() {
             <ArrowLeft className="size-4" />
             Back
           </Button>
-          <h1 className="text-3xl font-bold tracking-tight">Third-party Services</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Beyond Zoho Services</h1>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Extend your Zoho MCP workflow with tools from third-party services.
+            Extend your Zoho MCP workflow to contain tools from other services.
           </p>
         </section>
 

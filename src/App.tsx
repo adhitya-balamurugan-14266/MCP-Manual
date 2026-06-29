@@ -116,21 +116,21 @@ function App() {
             </CardContent>
           </Card>
 
-          {/* Third-party Service Tile */}
+          {/* Beyond Zoho Services Tile */}
           <Card className="hover:shadow-md transition-shadow duration-200 border-border">
             <CardHeader className="pb-3">
               <div className="flex items-center gap-3 mb-1">
                 <div className="h-10 w-10 rounded-lg bg-muted flex items-center justify-center">
                   <Plug className="size-5 text-foreground" />
                 </div>
-                <CardTitle className="text-xl">Third-party Service</CardTitle>
+                <CardTitle className="text-xl">Beyond Zoho Services</CardTitle>
               </div>
               <CardDescription className="text-sm leading-relaxed">
-                Extend your Zoho MCP workflow to contain tools from third-party services.
+                Extend your Zoho MCP workflow to contain tools from other services.
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button variant="outline" className="w-full sm:w-auto" aria-label="Explore Third-party Service" onClick={handleExploreThirdParty}>
+              <Button variant="outline" className="w-full sm:w-auto" aria-label="Explore Beyond Zoho Services" onClick={handleExploreThirdParty}>
                 Explore Now <ArrowRight className="size-4 ml-2" />
               </Button>
             </CardContent>

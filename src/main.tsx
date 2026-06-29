@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
 import { ZohoServicesPage } from './pages/ZohoServicesPage.tsx'
-import { ThirdPartyServicesPage } from './pages/ThirdPartyServicesPage.tsx'
+import { BeyondZohoServicesPage } from './pages/BeyondZohoServicesPage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/zoho-services" element={<ZohoServicesPage />} />
-        <Route path="/third-party-services" element={<ThirdPartyServicesPage />} />
+        <Route path="/third-party-services" element={<BeyondZohoServicesPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
