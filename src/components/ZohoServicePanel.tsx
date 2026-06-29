@@ -15696,7 +15696,7 @@ export function ZohoServicePanel({ defaultService = 'zoho-crm', searchQuery = ''
                   className={cn(
                     'flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors duration-150 w-full text-left',
                     isActive
-                      ? 'bg-primary text-primary-foreground'
+                      ? 'bg-primary text-primary-foreground dark:bg-foreground/[0.12] dark:text-foreground dark:ring-1 dark:ring-inset dark:ring-foreground/20'
                       : 'text-foreground hover:bg-muted'
                   )}
                 >
