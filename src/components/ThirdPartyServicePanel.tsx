@@ -2286,7 +2286,7 @@ export function ThirdPartyServicePanel({ defaultService = 'cloudspend', searchQu
       light: 'https://mcp-manual-logos-development.zohostratus.in/MDM-icon.svg',
     },
     qntrl: {
-      light: 'https://mcp-manual-logos-development.zohostratus.in/Qntrl-whiteBG.svg',
+      light: 'https://mcp-manual-logos-development.zohostratus.in/qntrl_by_zoho-white.svg',
       dark: 'https://mcp-manual-logos-development.zohostratus.in/qntrl_by_zoho-white.svg',
     },
     vani: {
