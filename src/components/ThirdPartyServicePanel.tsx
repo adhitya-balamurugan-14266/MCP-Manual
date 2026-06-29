@@ -1309,6 +1309,252 @@ function QntrlUsecasesAccordion() {
 }
 
 /* ─────────────────────────────────────────────
+   VANI — Tool List
+───────────────────────────────────────────── */
+
+const VANI_TOOLS: { tool: string; purpose: string }[] = [
+  { tool: 'acceptSpaceRequestRequest', purpose: 'Accept a request for a project.' },
+  { tool: 'acceptTeamRequestRequest', purpose: 'Accept a request for a team.' },
+  { tool: 'applyTextStyle', purpose: 'Apply portion and/or paragraph style to selected text scope.' },
+  { tool: 'batchUpdateData', purpose: 'Apply multiple deterministic mutation operations to a Space in order.' },
+  { tool: 'createAudio', purpose: 'Upload and insert an audio into the given zone or frame using base64 JSON payload.' },
+  { tool: 'createChart', purpose: 'Create a chart from raw tabular text data.' },
+  { tool: 'createConnectionCreate', purpose: 'Create a connector between two objects in the zone.' },
+  { tool: 'createEditionMember', purpose: 'Add members to an edition.' },
+  { tool: 'createExternalShare', purpose: 'External share a project.' },
+  { tool: 'createFile', purpose: 'Upload and insert a file into the given zone or frame using base64 JSON payload.' },
+  { tool: 'createFlowchart', purpose: 'Create a flowchart from node and edge graph specifications.' },
+  { tool: 'createInsertMedia', purpose: 'Insert a previously-uploaded media element into the given zone or frame.' },
+  { tool: 'createKanban', purpose: 'Create a kanban board structure from column and item specifications.' },
+  { tool: 'createMemberMember', purpose: 'Share all project resources with a member.' },
+  { tool: 'createMindmap', purpose: 'Create a mindmap structure from a hierarchical outline specification.' },
+  { tool: 'createPicture', purpose: 'Upload and insert a picture into the given zone or frame using base64 JSON payload.' },
+  { tool: 'createSpace', purpose: 'Create a new project Space.' },
+  { tool: 'createSpaceMember', purpose: 'Add project members to a Space.' },
+  { tool: 'createSpaceRequest', purpose: 'Create a request for a project.' },
+  { tool: 'createStack', purpose: 'Create a stack structure from an ordered list of item specifications.' },
+  { tool: 'createTable', purpose: 'Create a table from raw tabular text data.' },
+  { tool: 'createTableCellText', purpose: 'Replace full text content of a table cell.' },
+  { tool: 'createTeamMember', purpose: 'Add team members.' },
+  { tool: 'createTeamRequest', purpose: 'Create a request for a team.' },
+  { tool: 'createVideo', purpose: 'Upload and insert a video into the given zone or frame using base64 JSON payload.' },
+  { tool: 'createZone', purpose: 'Create a new document or canvas (Zone) within a Space.' },
+  { tool: 'createZoneMember', purpose: 'Add project resource members to a Zone.' },
+  { tool: 'deleteTableColumns', purpose: 'Delete columns in a specified column index range.' },
+  { tool: 'deleteTableRows', purpose: 'Delete rows in a specified row index range.' },
+  { tool: 'duplicateSpace', purpose: 'Duplicate a project Space.' },
+  { tool: 'duplicateZone', purpose: 'Duplicate a document Zone.' },
+  { tool: 'editTableCellText', purpose: 'Apply text mutation (range/cursor/all_text) to a table cell.' },
+  { tool: 'editText', purpose: 'Canonical text mutation API for replace/insert/delete/split/merge operations.' },
+  { tool: 'getConnectionFeasibility', purpose: 'Check if a connection between two objects is feasible.' },
+  { tool: 'getContents', purpose: 'Get the contents of a document Zone.' },
+  { tool: 'getData', purpose: 'Get specific data entities (zone, frame, object, facet, space, zone-slot) via proto-based operations. Supports single and batch requests.' },
+  { tool: 'getEdition', purpose: 'Get edition details.' },
+  { tool: 'getEditionAudits', purpose: 'Get audit logs for an edition.' },
+  { tool: 'getEditionExternalApiIntegration', purpose: 'Get external API integration policy status for all editions for the user.' },
+  { tool: 'getEditionMembers', purpose: 'Get members of an edition.' },
+  { tool: 'getEditionUserPermission', purpose: 'Get user role for an edition using ZUID.' },
+  { tool: 'getEditions', purpose: 'Get all edition details.' },
+  { tool: 'getExternalApiIntegration', purpose: 'Get external API integration policy status.' },
+  { tool: 'getExternalSharePolicy', purpose: 'Get the external share policy for an edition.' },
+  { tool: 'getExternalShareStatus', purpose: 'Get external share allowed status for an edition and team.' },
+  { tool: 'getMember', purpose: 'Get user resources in a project.' },
+  { tool: 'getMemberCounts', purpose: 'Get member stats of an edition.' },
+  { tool: 'getMeta', purpose: 'Get document metadata.' },
+  { tool: 'getMyEditionPermission', purpose: 'Get current user role for an edition.' },
+  { tool: 'getMySpacePermission', purpose: 'Get current user role for a project.' },
+  { tool: 'getMyTeamPermission', purpose: 'Get current user role in a team.' },
+  { tool: 'getRelationshipAncestors', purpose: 'Get ancestor chain for an object in the zone hierarchy.' },
+  { tool: 'getRelationshipChildren', purpose: 'Get direct children of a container object.' },
+  { tool: 'getRelationshipConnected', purpose: 'Get objects connected to an anchor through connector graph traversal.' },
+  { tool: 'getRelationshipDescendants', purpose: 'Get hierarchical descendants of a container via BFS traversal.' },
+  { tool: 'getRelationshipEvidence', purpose: 'Get deterministic relation evidence between two objects.' },
+  { tool: 'getRelationshipFind', purpose: 'Find related objects using deterministic relation filters and optional semantic hint.' },
+  { tool: 'getRelationshipParents', purpose: 'Get direct parent of an object in the zone hierarchy.' },
+  { tool: 'getRequestStatus', purpose: 'Get edition request status.' },
+  { tool: 'getSpace', purpose: 'Get project Space info.' },
+  { tool: 'getSpaceExternalShares', purpose: 'Get the details of the published project.' },
+  { tool: 'getSpaceMembers', purpose: 'Get project members.' },
+  { tool: 'getSpaceRequestMyRequests', purpose: 'Get current user requests for a project.' },
+  { tool: 'getSpaceRequests', purpose: 'Fetch all requests for a project.' },
+  { tool: 'getSpaceUserPermission', purpose: 'Get user role for a project.' },
+  { tool: 'getSpaces', purpose: 'Get info for multiple project Spaces.' },
+  { tool: 'getSubscription', purpose: 'Get subscription details.' },
+  { tool: 'getTableCellParagraphCount', purpose: 'Get paragraph count for a table cell.' },
+  { tool: 'getTableCellParagraphText', purpose: 'Get paragraph text for a table cell by paragraph index range.' },
+  { tool: 'getTableCellText', purpose: 'Get flattened plain text for a table cell.' },
+  { tool: 'getTableCellTextLength', purpose: 'Get character length of a table cell text.' },
+  { tool: 'getTableSize', purpose: 'Get row and column count for a table object.' },
+  { tool: 'getTeam', purpose: 'Get team details.' },
+  { tool: 'getTeamAudits', purpose: 'Get audit logs for a team.' },
+  { tool: 'getTeamExternalShares', purpose: 'Get the details of external shared projects of a team.' },
+  { tool: 'getTeamMembers', purpose: 'Get team members.' },
+  { tool: 'getTeamMyPermission', purpose: 'Get user role in all teams.' },
+  { tool: 'getTeamRequestMyRequests', purpose: 'Get current user requests for a team.' },
+  { tool: 'getTeamRequests', purpose: 'Get all requests for a team.' },
+  { tool: 'getTeamUserPermission', purpose: 'Get user role in a team.' },
+  { tool: 'getTeams', purpose: 'Get all teams details.' },
+  { tool: 'getTemplate', purpose: 'Get template details.' },
+  { tool: 'getTemplates', purpose: 'Get all templates details.' },
+  { tool: 'getText', purpose: 'Get text content of an object (all text or a character range).' },
+  { tool: 'getTextLength', purpose: 'Get total flattened text length of an object.' },
+  { tool: 'getTextParagraphCount', purpose: 'Get total paragraph count across all TextBodies of an object.' },
+  { tool: 'getTextParagraphText', purpose: "Get paragraphs in [start, end) as a list of {paragraph_index, text} items." },
+  { tool: 'getTraversalIndex', purpose: 'Get hierarchical index path of an object within the zone traversal order.' },
+  { tool: 'getTraversalSequence', purpose: 'Get ordered traversal neighbors from an anchor point in the zone.' },
+  { tool: 'getTraversalWindow', purpose: 'Get before/after context window around an anchor object in the zone.' },
+  { tool: 'getUserExternalApiIntegration', purpose: 'Get external API integration policy status for a user.' },
+  { tool: 'getVersion', purpose: 'Get document version.' },
+  { tool: 'getZoneMeta', purpose: 'Get all documents metadata for a Space.' },
+  { tool: 'insertTableColumns', purpose: 'Insert columns before or after an anchor column index.' },
+  { tool: 'insertTableRows', purpose: 'Insert rows before or after an anchor row index.' },
+  { tool: 'listData', purpose: 'List data entities (zones, frames, zone-slots, objects) with optional pagination. Supports single and batch requests.' },
+  { tool: 'mergeTableCells', purpose: 'Merge a rectangular range of table cells.' },
+  { tool: 'moveSpace', purpose: 'Move a project Space.' },
+  { tool: 'moveZone', purpose: 'Move a document Zone.' },
+  { tool: 'reconnectConnections', purpose: 'Replace one endpoint of an existing connector with a new object.' },
+  { tool: 'rejectSpaceRequestRequest', purpose: 'Reject a request for a project.' },
+  { tool: 'rejectTeamRequestRequest', purpose: 'Reject a request for a team.' },
+  { tool: 'replyComments', purpose: 'Add a reply comment.' },
+  { tool: 'searchComments', purpose: 'Search comment content.' },
+  { tool: 'searchEditionFrames', purpose: 'Get the frame details across all teams in an edition using search content.' },
+  { tool: 'searchEditionMembers', purpose: 'Search members of an edition.' },
+  { tool: 'searchShapes', purpose: 'Search shape content.' },
+  { tool: 'searchTeam', purpose: 'Search content across a team.' },
+  { tool: 'searchTeamFrames', purpose: 'Search frame content across a team.' },
+  { tool: 'searchTeamMembers', purpose: 'Search team members.' },
+  { tool: 'searchZones', purpose: 'Search content across Zones.' },
+  { tool: 'unmergeTableCells', purpose: 'Unmerge a merged cell area containing the specified cell.' },
+  { tool: 'updateData', purpose: 'Apply a single deterministic mutation operation to a Space.' },
+  { tool: 'updateEditionMemberMember', purpose: 'Update an edition member.' },
+  { tool: 'updateExternalApiIntegration', purpose: 'Update the external API integration policy.' },
+  { tool: 'updateExternalShares', purpose: 'Update the external shared project details.' },
+  { tool: 'updateSpaceMemberMember', purpose: 'Update a project member.' },
+  { tool: 'updateSpaceMeta', purpose: 'Update project metadata.' },
+  { tool: 'updateSpaceState', purpose: 'Update project state.' },
+  { tool: 'updateTeam', purpose: 'Update team details.' },
+  { tool: 'updateTeamMemberMember', purpose: 'Update a team member.' },
+  { tool: 'updateZoneMeta', purpose: 'Update document metadata.' },
+  { tool: 'updateZoneState', purpose: 'Update document state.' },
+];
+
+/* ─────────────────────────────────────────────
+   VANI — Common Usecases
+───────────────────────────────────────────── */
+
+const VANI_USECASES: Usecase[] = [
+  {
+    id: 'vani-setup-space',
+    title: 'Setting Up a Collaborative Project Space from Scratch',
+    subtitle: 'Create a Space, add Zones and members, and populate the canvas with a flowchart and table for immediate team use.',
+    icon: Layers,
+    overview:
+      'When a new project or initiative needs a shared visual workspace, an AI agent can create the Space, set up Zones for different workstreams, add members, and populate the canvas with structured content, giving the team an immediately usable collaborative environment. createSpace establishes the shared container, createZone provides the canvas, createSpaceMember brings the team in, createFlowchart maps the workflow visually, and createTable adds a built-in tracking layer — all without leaving Vani.',
+    steps: [
+      {
+        label: 'Create the Space',
+        tools: ['createSpace'],
+        description: 'Use createSpace to create a new project Space, establishing the shared container for all Zones, canvases, and content that the team will work within.',
+      },
+      {
+        label: 'Create a Zone',
+        tools: ['createZone'],
+        description: 'Call createZone to create a new document or canvas within the Space, providing a dedicated visual workspace for a specific workstream, team, or phase of the project.',
+      },
+      {
+        label: 'Add members to the Space',
+        tools: ['createSpaceMember', 'createZoneMember'],
+        description: 'Use createSpaceMember to add project members to the Space, giving them access to all resources within it. Individual Zone-level access can be managed separately using createZoneMember.',
+      },
+      {
+        label: 'Create a flowchart to map the project workflow',
+        tools: ['createFlowchart'],
+        description: 'Call createFlowchart to generate a flowchart from node and edge specifications directly on the Zone canvas, visually representing the project workflow so all team members share a common understanding from day one.',
+      },
+      {
+        label: 'Create a table for tracking project data',
+        tools: ['createTable'],
+        description: 'Use createTable to add a structured data table to the Zone from raw tabular text data, giving the team a built-in tracking layer for tasks, milestones, or deliverables within the same visual workspace.',
+      },
+    ],
+  },
+  {
+    id: 'vani-brainstorm',
+    title: 'Running a Structured Brainstorming and Ideation Session',
+    subtitle: 'Populate the canvas with mind maps, kanban boards, and stacks, then style content and add media for a fully organized session output.',
+    icon: Activity,
+    overview:
+      'When a team needs to brainstorm, organize ideas, and capture decisions visually, an AI agent can populate the canvas with mind maps, kanban boards, and structured stacks, and apply text styling to ensure the session output is clear and organized. createMindmap structures the ideas, createKanban organizes them into swimlanes, createStack captures prioritized items, applyTextStyle makes key decisions visually distinct, and createPicture or createFile enriches the canvas with supporting context.',
+    steps: [
+      {
+        label: 'Create a mind map',
+        tools: ['createMindmap'],
+        description: 'Use createMindmap to generate a mind map from a hierarchical outline specification on the Zone canvas, giving the team an immediately structured view of the ideas being discussed and the relationships between them.',
+      },
+      {
+        label: 'Create a kanban board',
+        tools: ['createKanban'],
+        description: 'Call createKanban to add a kanban board to the canvas from column and item specifications, organizing ideas or tasks into swimlanes that the team can move and prioritize collaboratively.',
+      },
+      {
+        label: 'Create a stack for ordered content',
+        tools: ['createStack'],
+        description: 'Use createStack to create a stack structure from an ordered list of item specifications, useful for capturing prioritized ideas, ranked options, or sequenced action items that emerge from the session.',
+      },
+      {
+        label: 'Apply text styling to content',
+        tools: ['applyTextStyle'],
+        description: 'Call applyTextStyle to apply portion and paragraph styles to selected text across the canvas, ensuring headings, labels, and key decisions are visually distinct and easy to scan after the session concludes.',
+      },
+      {
+        label: 'Add supporting media',
+        tools: ['createPicture', 'createFile'],
+        description: 'Use createPicture or createFile to upload and insert supporting images or reference documents into the Zone, enriching the brainstorm canvas with visual context or source material relevant to the ideas being developed.',
+      },
+    ],
+  },
+  {
+    id: 'vani-audit',
+    title: 'Auditing, Searching, and Maintaining an Active Collaboration Space',
+    subtitle: 'Retrieve Zone metadata, search across content and frames, and update zones and member roles without disrupting ongoing work.',
+    icon: Shield,
+    overview:
+      "When an administrator needs to audit the content of an active Space, find specific frames or comments, and keep the workspace organized, an AI agent can retrieve metadata, search across content, and apply updates to zones and members without disrupting the team's ongoing work. getZoneMeta provides a complete structural picture, searchZones and searchTeamFrames locate specific content, updateZoneMeta keeps naming accurate, and updateSpaceMemberMember and updateTeamMemberMember ensure access levels remain correct.",
+    steps: [
+      {
+        label: 'Retrieve all Zone metadata',
+        tools: ['getZoneMeta'],
+        description: 'Use getZoneMeta to retrieve metadata for all documents within the Space, giving the agent a complete picture of the current structure including Zone names, states, and versions before making any changes.',
+      },
+      {
+        label: 'Search for content across the Space',
+        tools: ['searchZones'],
+        description: 'Call searchZones to search for specific content across all Zones in the Space, identifying where particular topics, decisions, or assets are documented without having to open each Zone individually.',
+      },
+      {
+        label: 'Search for frames and shapes',
+        tools: ['searchTeamFrames', 'searchShapes'],
+        description: 'Use searchTeamFrames to locate specific frames across all teams in the edition, and searchShapes to search for shape content, ensuring all relevant visual assets can be located and referenced quickly during the audit.',
+      },
+      {
+        label: 'Update Zone metadata',
+        tools: ['updateZoneMeta'],
+        description: 'Call updateZoneMeta to update the name, description, or other metadata of any Zones that need to be renamed or reorganized as part of the audit, keeping the workspace structure accurate and navigable.',
+      },
+      {
+        label: 'Update member roles',
+        tools: ['updateSpaceMemberMember', 'updateTeamMemberMember'],
+        description: 'Use updateSpaceMemberMember to update project member roles where access levels have changed, and updateTeamMemberMember to apply the same corrections at the team level, ensuring the right people have the right access across the entire Space.',
+      },
+    ],
+  },
+];
+
+function VaniUsecasesAccordion() {
+  return <UsecasesAccordionGroup usecases={VANI_USECASES} />;
+}
+
+/* ─────────────────────────────────────────────
    SDP ON DEMAND — Tool List
 ───────────────────────────────────────────── */
 
@@ -1912,6 +2158,8 @@ const SERVICE_ABOUT: Partial<Record<string, string>> = {
     "With employees accessing corporate data from personal and company-issued smartphones and tablets, organizations need a reliable way to enforce security policies, push configurations, and respond to device loss or theft without disrupting productivity. ManageEngine Mobile Device Manager Plus gives IT teams centralized control over iOS, Android, Windows, and macOS devices, supporting enrollment, policy enforcement, app distribution, and remote wipe from a single console that scales from small businesses to large enterprises.",
   qntrl:
     "Teams that rely on email threads and spreadsheets to coordinate multi-step processes inevitably lose visibility into where work stands, who is responsible for the next action, and whether deadlines are being met. Qntrl is ManageEngine's workflow orchestration platform that lets operations teams design, automate, and monitor structured workflows with defined stages, assignments, and escalation rules, giving managers real-time visibility into process health and giving contributors a clear picture of what they need to do next.",
+  vani:
+    "Vani by Zoho is an intelligent visual collaboration platform designed to help teams not just talk about ideas but actually see them, shape them, and bring them to life. Whether it is an infinite whiteboard, mind maps, diagrams, workflows, or ready-to-use templates, Vani gives teams a shared Space where thoughts become tangible and action flows naturally. At its core, Vani runs on three pillars: visualize, collaborate, and execute. Vani organizes work through Spaces, which serve as shared folders for teams or projects, and Zones, which are individual canvases within each Space. Independent teams can work on different projects simultaneously while maintaining a bird's-eye view of the organization's broader goals. With support for flowcharts, tables, kanban boards, mind maps, media, and structured content creation, combined with real-time collaboration features including cursors, pins, annotations, and comments, Vani is built for hybrid and distributed teams that need a single governed workspace to take ideas from brainstorm to execution without switching tools.",
   'sdp-on-demand':
     "IT service desks that struggle with ticket backlogs, unclear SLAs, and disconnected asset records often find that the root cause is a tool that was not designed to scale with the organization. ManageEngine ServiceDesk Plus Cloud is a full-featured ITSM platform built on ITIL best practices, covering incident management, problem management, change management, asset management, and a self-service portal in a single cloud-delivered solution that gives service desk teams the structure and automation they need to deliver consistent, measurable support.",
   site24x7:
@@ -1928,6 +2176,7 @@ const SERVICES = [
   { id: 'log360cloud',     label: 'Log360Cloud',      icon: BarChart2 },
   { id: 'mdm',             label: 'MDM',              icon: Smartphone },
   { id: 'qntrl',           label: 'Qntrl',            icon: GitBranch },
+  { id: 'vani',            label: 'Vani',             icon: Layers },
   { id: 'sdp-on-demand',   label: 'SDP on Demand',    icon: Headphones },
   { id: 'site24x7',        label: 'Site 24x7',        icon: Activity },
 ] as const;
@@ -1951,6 +2200,7 @@ const SERVICE_TOOLS_MAP: Record<ServiceId, { tool: string; purpose: string }[]> 
   log360cloud: LOG360CLOUD_TOOLS,
   mdm: MDM_TOOLS,
   qntrl: QNTRL_TOOLS,
+  vani: VANI_TOOLS,
   'sdp-on-demand': SDP_ON_DEMAND_TOOLS,
   site24x7: SITE24X7_TOOLS,
 };
@@ -2038,6 +2288,10 @@ export function ThirdPartyServicePanel({ defaultService = 'cloudspend', searchQu
     qntrl: {
       light: 'https://mcp-manual-logos-development.zohostratus.in/Qntrl-whiteBG.svg',
       dark: 'https://mcp-manual-logos-development.zohostratus.in/qntrl_by_zoho-white.svg',
+    },
+    vani: {
+      light: 'https://mcp-manual-logos-development.zohostratus.in/vani-logo-text-white.svg',
+      dark: 'https://mcp-manual-logos-development.zohostratus.in/vani-logo-text-white.svg',
     },
     site24x7: {
       light: 'https://mcp-manual-logos-development.zohostratus.in/Site24x7-icon.svg',
@@ -2253,6 +2507,8 @@ export function ThirdPartyServicePanel({ defaultService = 'cloudspend', searchQu
                     <MdmUsecasesAccordion />
                   ) : effectiveService === 'qntrl' ? (
                     <QntrlUsecasesAccordion />
+                  ) : effectiveService === 'vani' ? (
+                    <VaniUsecasesAccordion />
                   ) : effectiveService === 'sdp-on-demand' ? (
                     <SdpOnDemandUsecasesAccordion />
                   ) : effectiveService === 'site24x7' ? (
