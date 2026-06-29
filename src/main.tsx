@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/zoho-services" element={<ZohoServicesPage />} />
-        <Route path="/third-party-services" element={<BeyondZohoServicesPage />} />
+        <Route path="/beyond-zoho-services" element={<BeyondZohoServicesPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

@@ -15,7 +15,7 @@ function App() {
   };
 
   const handleExploreThirdParty = () => {
-    navigate('/third-party-services');
+    navigate('/beyond-zoho-services');
   };
 
   const toggleTheme = () => {
