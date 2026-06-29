@@ -1,0 +1,9 @@
+{
+  "name": "asset_manager",
+  "version": "1.0.0",
+  "description": "Manages static assets (logos, images) in Catalyst Stratus for MCP Interactive Tool",
+  "main": "index.js",
+  "dependencies": {
+    "zcatalyst-sdk-node": "latest"
+  }
+}

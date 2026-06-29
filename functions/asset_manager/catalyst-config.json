@@ -1,0 +1,13 @@
+{
+  "deployment": {
+    "name": "asset_manager",
+    "stack": "node20",
+    "type": "advancedio",
+    "env_variables": {
+      "STRATUS_BUCKET_URL": "https://mcp-manual-logos-development.zohostratus.in"
+    }
+  },
+  "execution": {
+    "main": "index.js"
+  }
+}

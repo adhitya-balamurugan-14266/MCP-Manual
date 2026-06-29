@@ -1,8 +1,13 @@
 {
+  "functions": {
+    "targets": ["asset_manager"],
+    "ignore": [],
+    "source": "functions"
+  },
   "slate": [
     {
       "name": "zoho-mcp-manual",
-      "source": "/Users/adhitya-14266/Desktop/MCP Interactive Tool/code/dist"
+      "source": "/Users/adhitya-14266/ClaudeApps/MCP Interactive Tool/code/dist"
     }
   ]
 }
