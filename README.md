@@ -7,7 +7,7 @@ An interactive web reference for exploring MCP (Model Context Protocol) tools ac
 The Zoho MCP Interactive Manual gives developers and AI practitioners a structured, searchable view of every MCP tool exposed by Zoho and connected services. It is designed to complement the Zoho MCP server and help teams quickly identify which tools to use for a given workflow.
 
 - **57 services** covered across Zoho and Beyond Zoho
-- **8,787+ MCP tools** documented with names and purposes
+- **8,484+ MCP tools** documented with names and purposes
 - Per-service **About**, **Tool List**, and **Common Usecases** tabs
 - Full-text **search** across service names and tool names
 - **Light and dark mode** with branded service logos
@@ -91,6 +91,12 @@ code/
 ├── catalyst.json        # Catalyst Slate + Functions configuration
 └── package.json
 ```
+
+## Recent Updates (July 2026)
+
+- Synchronized tool definitions for **Zoho IoT** (314 tools), **Zoho Mail** (183 tools), **Zoho Payroll** (150 tools), **Zoho Social** (31 tools), and **Zoho Tables** (74 tools)
+- Updated homepage statistics to reflect current tool count: **8,484 tools**
+- All service tool lists now match their latest JSON specifications
 
 ## Features
 
