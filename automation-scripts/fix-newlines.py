@@ -1,7 +1,13 @@
 import re
-
 import sys
-filepath = sys.argv[1] if len(sys.argv) > 1 else "/Users/adhitya-14266/ClaudeApps/MCP Interactive Tool/code/src/components/ZohoServicePanel.tsx"
+import os
+
+# Get default path relative to this script
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+CODE_DIR = os.path.dirname(SCRIPT_DIR)
+DEFAULT_TSX = os.path.join(CODE_DIR, 'src/components/ZohoServicePanel.tsx')
+
+filepath = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_TSX
 with open(filepath, 'r') as f:
     content = f.read()
 

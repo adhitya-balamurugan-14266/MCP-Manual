@@ -1,4 +1,9 @@
 import re, json
+import os
+
+# Get absolute path relative to this script
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+CODE_DIR = os.path.dirname(SCRIPT_DIR)
 
 # Service configurations
 configs = [
@@ -49,7 +54,7 @@ configs = [
     },
 ]
 
-TSX_PATH = '/Users/adhitya-14266/ClaudeApps/MCP Interactive Tool/code/src/components/ZohoServicePanel.tsx'
+TSX_PATH = os.path.join(CODE_DIR, 'src/components/ZohoServicePanel.tsx')
 
 # Read TSX file once
 with open(TSX_PATH) as f:

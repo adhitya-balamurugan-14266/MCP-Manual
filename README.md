@@ -88,10 +88,12 @@ code/
 │   │   └── BeyondZohoServicesPage.tsx
 │   └── App.tsx                          # Home / landing page
 ├── sync-tools.mjs       # Official tool to sync a service's tool list from a JSON spec
-├── check_all.py         # Utility to check multiple services for sync status
-├── sync_all_services.py # Utility to sync multiple services in batch
-├── check_usecases.py    # Utility to validate removed tools aren't used in usecases
-├── fix-newlines.py      # Utility to fix newline formatting issues in tool descriptions
+├── automation-scripts/  # Python utilities for batch operations and maintenance
+│   ├── README.md            # Documentation for automation scripts
+│   ├── check_all.py         # Check sync status for multiple services
+│   ├── sync_all_services.py # Sync multiple services in batch
+│   ├── check_usecases.py    # Validate removed tools aren't used in usecases
+│   └── fix-newlines.py      # Fix newline formatting issues in tool descriptions
 ├── catalyst.json        # Catalyst Slate + Functions configuration
 └── package.json
 ```
@@ -104,13 +106,15 @@ The main tool for syncing individual service tool definitions:
 node sync-tools.mjs --service <serviceId> --file <path-to-json> [--deploy]
 ```
 
-### Python Utilities for Batch Operations
+### Python Utilities (automation-scripts/)
+Python scripts for batch operations and maintenance tasks:
+
 - **check_all.py** - Check sync status for multiple services at once
 - **sync_all_services.py** - Sync multiple services in a single batch operation
 - **check_usecases.py** - Validate that removed tools aren't referenced in usecases
 - **fix-newlines.py** - Fix newline/formatting issues in tool descriptions
 
-These utilities are useful when updating multiple Zoho services simultaneously.
+See [automation-scripts/README.md](automation-scripts/README.md) for detailed usage instructions.
 
 ## Recent Updates (July 2026)
 

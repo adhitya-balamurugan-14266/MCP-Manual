@@ -1,4 +1,10 @@
 import re, json
+import os
+
+# Get absolute path relative to this script
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+CODE_DIR = os.path.dirname(SCRIPT_DIR)
+TSX = os.path.join(CODE_DIR, 'src/components/ZohoServicePanel.tsx')
 
 services = [
     ('IoT', '/Users/adhitya-14266/Desktop/ZohoIoT.json', 'ZohoIoT_', 8, r'const IOT_TOOLS(?:_INLINE)?(?::\s*[^=]+)?\s*=\s*\[(.*?)\n\];\n', "'zoho-iot'"),
@@ -7,8 +13,6 @@ services = [
     ('Social', '/Users/adhitya-14266/Desktop/ZohoSocial.json', 'ZohoSocial_', 11, r'const SOCIAL_TOOLS(?::\s*[^=]+)?\s*=\s*\[(.*?)\n\];\n', "'zoho-social'"),
     ('Tables', '/Users/adhitya-14266/Desktop/ZohoTables.json', 'ZohoTables_', 11, r'const TABLES_TOOLS_INLINE(?::\s*[^=]+)?\s*=\s*\[(.*?)\n\];\n', "'zoho-tables'"),
 ]
-
-TSX = '/Users/adhitya-14266/ClaudeApps/MCP Interactive Tool/code/src/components/ZohoServicePanel.tsx'
 with open(TSX) as f:
     tsx = f.read()
 
