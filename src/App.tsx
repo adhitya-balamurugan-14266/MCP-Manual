@@ -81,12 +81,12 @@ function App() {
           <div className="flex gap-4 sm:gap-6">
             <div className="rounded-xl border border-border bg-card p-6 flex flex-col items-center justify-center gap-2 w-32 h-32 sm:w-36 sm:h-36">
               <Layers className="size-5 text-muted-foreground" />
-              <p className="text-3xl font-bold tracking-tight">58</p>
+              <p className="text-3xl font-bold tracking-tight">59</p>
               <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Services</span>
             </div>
             <div className="rounded-xl border border-border bg-card p-6 flex flex-col items-center justify-center gap-2 w-32 h-32 sm:w-36 sm:h-36">
               <Plug className="size-5 text-muted-foreground" />
-              <p className="text-3xl font-bold tracking-tight">8,534</p>
+              <p className="text-3xl font-bold tracking-tight">10,418</p>
               <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Total Tools</span>
             </div>
           </div>

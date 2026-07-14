@@ -6,8 +6,8 @@ An interactive web reference for exploring MCP (Model Context Protocol) tools ac
 
 The Zoho MCP Interactive Manual gives developers and AI practitioners a structured, searchable view of every MCP tool exposed by Zoho and connected services. It is designed to complement the Zoho MCP server and help teams quickly identify which tools to use for a given workflow.
 
-- **58 services** covered across Zoho and Beyond Zoho
-- **8,534+ MCP tools** documented with names and purposes
+- **59 services** covered across Zoho and Beyond Zoho
+- **10,418+ MCP tools** documented with names and purposes
 - Per-service **About**, **Tool List**, and **Common Usecases** tabs
 - Full-text **search** across service names and tool names
 - **Light and dark mode** with branded service logos
@@ -15,7 +15,7 @@ The Zoho MCP Interactive Manual gives developers and AI practitioners a structur
 ## Covered Services
 
 ### Zoho Services
-Bigin, Catalyst by Zoho, Zoho Analytics, Zoho Apptics, Zoho Assist, Zoho Backstage, Zoho Billing, Zoho Bookings, Zoho Books, Zoho Calendar, Zoho Cliq, Zoho CommandCenter, Zoho Commerce, Zoho Connect, Zoho Creator, Zoho CRM, Zoho Dataprep, Zoho Desk, Zoho Directory, Zoho ERP, Zoho Expense, Zoho Inventory, Zoho Invoice, Zoho IoT, Zoho Learn, Zoho Lens, Zoho Mail, Zoho Meeting, Zoho Notebook, Zoho One, Zoho PageSense, Zoho Payments, Zoho Payroll, Zoho People, Zoho POS, Zoho Procurement, Zoho Projects, Zoho Recruit, Zoho SalesIQ, Zoho Sheet, Zoho Show, Zoho Sign, Zoho Social, Zoho Sprints, Zoho Survey, Zoho Tables, Zoho Vertical Studio, Zoho Webinar, Zoho WorkDrive, Zoho Writer
+Bigin, Catalyst by Zoho, Zoho Analytics, Zoho Apptics, Zoho Assist, Zoho Backstage, Zoho Billing, Zoho Bookings, Zoho Books, Zoho Calendar, Zoho Cliq, Zoho CommandCenter, Zoho Commerce, Zoho Connect, Zoho Creator, Zoho CRM, Zoho Dataprep, Zoho Desk, Zoho Directory, Zoho ERP, Zoho Expense, Zoho Inventory, Zoho Invoice, Zoho IoT, Zoho Learn, Zoho Lens, Zoho Mail, Zoho Meeting, Zoho Notebook, Zoho Office Integrator, Zoho One, Zoho PageSense, Zoho Payments, Zoho Payroll, Zoho People, Zoho POS, Zoho Procurement, Zoho Projects, Zoho Recruit, Zoho SalesIQ, Zoho Sheet, Zoho Show, Zoho Sign, Zoho Social, Zoho Sprints, Zoho Survey, Zoho Tables, Zoho Vertical Studio, Zoho Webinar, Zoho WorkDrive, Zoho Writer
 
 ### Beyond Zoho Services
 CloudSpend, EndpointCentral, Log360 Cloud, MDM (Mobile Device Manager Plus), Qntrl, Vani, SDP on Demand, Site 24x7
@@ -118,9 +118,12 @@ See [automation-scripts/README.md](automation-scripts/README.md) for detailed us
 
 ## Recent Updates (July 2026)
 
+- Synchronized **Zoho Cliq** to 454 tools — added 152 new tools (channels, reminders, events, roles, departments), removed 64 legacy extension/datastore tools, updated 15 descriptions
+- Added **10 advance payment tools** to **Zoho Expense** (total: 168 tools) — attachment handling, approval, recall, reject, submit, and void operations
+- Updated homepage statistics to reflect current totals: **59 services**, **10,418 tools**
+- Added **Zoho Office Integrator** to the services list (32 tools)
 - Added **Zoho PageSense** as a new service (13 tools) — covering projects, goals, portals, and web analytics reports
 - Removed **23 duplicate tool entries** from **Catalyst by Zoho** — tool list now has 176 unique entries, matching the official specification
-- Updated homepage statistics to reflect current totals: **58 services**, **8,534 tools**
 - Synchronized tool definitions for **Zoho IoT** (314 tools), **Zoho Mail** (183 tools), **Zoho Payroll** (150 tools), **Zoho Social** (31 tools), and **Zoho Tables** (74 tools)
 - Added **39 QuickML tools** to **Catalyst by Zoho** (total: 176 tools) — covering QuickML datasets, models, pipelines, endpoints, and predictions
 - Added **2 usage analytics tools** to **Zoho Creator** (`getUsageSummary`, `getUsageTrend`) — total: 37 tools
