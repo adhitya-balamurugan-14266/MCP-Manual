@@ -2297,7 +2297,7 @@ export function ThirdPartyServicePanel({ defaultService = 'cloudspend', searchQu
         contentRef.current.scrollTop = 0;
       }
       if (activeNavItemRef.current && navRef.current) {
-        activeNavItemRef.current.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        activeNavItemRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
       }
     });
     return () => cancelAnimationFrame(raf);

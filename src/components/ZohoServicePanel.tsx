@@ -16613,7 +16613,7 @@ export function ZohoServicePanel({ defaultService = 'bigin', searchQuery = '' }:
         contentRef.current.scrollTop = 0;
       }
       if (activeNavItemRef.current && navRef.current) {
-        activeNavItemRef.current.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        activeNavItemRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' });
       }
     });
     return () => cancelAnimationFrame(raf);
@@ -17036,6 +17036,13 @@ export function ZohoServicePanel({ defaultService = 'bigin', searchQuery = '' }:
                                   </p>
                                   <p className="text-sm text-muted-foreground leading-relaxed">
                                     What sets Zoho Social apart is its deep integration with Zoho CRM, enabling teams to convert social interactions — comments, mentions, and direct messages — directly into CRM leads and contacts, so social engagement feeds seamlessly into the sales pipeline without manual data entry. It also connects with Zoho Desk for routing social messages into support tickets, Zoho Analytics for advanced cross-channel reporting, and the broader Zoho ecosystem through Zoho Flow and APIs. The platform provides detailed analytics on reach, impressions, engagement, follower growth, and post performance across all connected channels, with customizable reports that can be white-labeled and exported for client presentations. With a free trial, transparent per-brand pricing, agency-specific plans with client management portals, and enterprise-grade security backed by Zoho's longstanding commitment to data privacy, Zoho Social positions itself as a capable, integrated alternative to tools like Hootsuite, Buffer, and Sprout Social for businesses that want social media management tightly connected to their CRM and customer support operations.
+                                  </p>
+                                  <p className="text-sm text-muted-foreground leading-relaxed">
+                                    <span className="font-semibold text-foreground">Note:</span> The{' '}
+                                    <code className="rounded bg-muted px-1 py-0.5 text-xs font-mono text-foreground">getSocialPortals</code>,{' '}
+                                    <code className="rounded bg-muted px-1 py-0.5 text-xs font-mono text-foreground">getSocialBrands</code>, and{' '}
+                                    <code className="rounded bg-muted px-1 py-0.5 text-xs font-mono text-foreground">getSocialChannels</code>{' '}
+                                    tools are prerequisite tools that must be configured in your Zoho MCP server before any other Zoho Social tool can be used.
                                   </p>
                                 </div>
                                ) : selectedService === 'zoho-sprints' ? (

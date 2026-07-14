@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Sun, Moon, ArrowLeft } from 'lucide-react';
 import { MeatballMenu } from '@/components/MeatballMenu';
@@ -13,6 +13,8 @@ export function ZohoServicesPage() {
   );
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const toggleTheme = () => {
     setDark((prev) => {
