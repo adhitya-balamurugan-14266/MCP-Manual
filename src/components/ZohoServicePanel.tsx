@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Database, Headphones, Zap, BarChart2, Activity, LifeBuoy, CreditCard, CalendarCheck, BookOpen, Calendar, MessageSquare, ShoppingCart, Layers, Filter, Receipt, Package, FileText, GraduationCap, Camera, Mail, BookMarked, Wallet, Users, MapPin, FolderKanban, UserPlus, MessageCircle, Sheet, PenLine, Share2, GitBranch, ClipboardList, Globe, HardDrive, PenSquare, ChevronDown, Workflow, Activity as ActivityIcon, RefreshCw, Presentation, Network, UserCheck, Building2, Wifi, Video, LayoutGrid, ShoppingBag, Table2, Radio } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
@@ -16535,11 +16536,37 @@ interface ZohoServicePanelProps {
   searchQuery?: string;
 }
 
-export function ZohoServicePanel({ defaultService = 'zoho-crm', searchQuery = '' }: ZohoServicePanelProps) {
-  const [selectedService, setSelectedService] = useState<ServiceId>(defaultService);
+function labelToSlug(label: string): string {
+  return label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function slugToZohoServiceId(slug: string): ServiceId | undefined {
+  const svc = SERVICES.find(s => labelToSlug(s.label) === slug);
+  return svc ? (svc.id as ServiceId) : undefined;
+}
+
+export function ZohoServicePanel({ defaultService = 'bigin', searchQuery = '' }: ZohoServicePanelProps) {
+  const { serviceSlug } = useParams<{ serviceSlug?: string }>();
+  const navigate = useNavigate();
+
+  const selectedService: ServiceId = (() => {
+    if (serviceSlug) {
+      const id = slugToZohoServiceId(serviceSlug);
+      if (id) return id;
+    }
+    return (defaultService ?? SERVICES[0].id) as ServiceId;
+  })();
+
   const [activeTab, setActiveTab] = useState<TabId>('about');
   const [collapsed, setCollapsed] = useState(false);
   const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
+
+  useEffect(() => {
+    if (!serviceSlug) {
+      navigate(`/zoho-services/${labelToSlug(SERVICES[0].label)}`, { replace: true });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const observer = new MutationObserver(() => {
@@ -16560,13 +16587,12 @@ export function ZohoServicePanel({ defaultService = 'zoho-crm', searchQuery = ''
       })
     : SERVICES;
 
-  // When search changes, auto-select first matching service and switch to tool-list if tool match
+  // When search changes, navigate to first matching service and switch to tool-list if tool match
   useEffect(() => {
     if (!q) return;
     if (filteredServices.length === 0) return;
     const firstMatch = filteredServices[0];
-    setSelectedService(firstMatch.id as ServiceId);
-    // If the match is a tool match (not a service label match), jump to tool-list tab
+    navigate(`/zoho-services/${labelToSlug(firstMatch.label)}`, { replace: true });
     const isServiceLabelMatch = firstMatch.label.toLowerCase().includes(q);
     setActiveTab(isServiceLabelMatch ? 'about' : 'tool-list');
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -16594,7 +16620,8 @@ export function ZohoServicePanel({ defaultService = 'zoho-crm', searchQuery = ''
   }, [selectedService]);
 
   const handleSelectService = (id: ServiceId) => {
-    setSelectedService(id);
+    const svc = SERVICES.find(s => s.id === id);
+    if (svc) navigate(`/zoho-services/${labelToSlug(svc.label)}`);
     setActiveTab('about');
   };
 

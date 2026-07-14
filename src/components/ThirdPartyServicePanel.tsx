@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Shield, Cloud, Monitor, BarChart2, Smartphone, GitBranch, Headphones, Activity, ChevronDown, Database, Layers, Workflow } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
@@ -2243,11 +2244,37 @@ interface ThirdPartyServicePanelProps {
   searchQuery?: string;
 }
 
+function labelToSlug(label: string): string {
+  return label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+
+function slugToThirdPartyServiceId(slug: string): ServiceId | undefined {
+  const svc = SERVICES.find(s => labelToSlug(s.label) === slug);
+  return svc ? (svc.id as ServiceId) : undefined;
+}
+
 export function ThirdPartyServicePanel({ defaultService = 'cloudspend', searchQuery = '' }: ThirdPartyServicePanelProps) {
-  const [selectedService, setSelectedService] = useState<ServiceId>(defaultService);
+  const { serviceSlug } = useParams<{ serviceSlug?: string }>();
+  const navigate = useNavigate();
+
+  const selectedService: ServiceId = (() => {
+    if (serviceSlug) {
+      const id = slugToThirdPartyServiceId(serviceSlug);
+      if (id) return id;
+    }
+    return (defaultService ?? SERVICES[0].id) as ServiceId;
+  })();
+
   const [activeTab, setActiveTab] = useState<TabId>('about');
   const [collapsed, setCollapsed] = useState(false);
   const [isDark, setIsDark] = useState(() => document.documentElement.classList.contains('dark'));
+
+  useEffect(() => {
+    if (!serviceSlug) {
+      navigate(`/beyond-zoho-services/${labelToSlug(SERVICES[0].label)}`, { replace: true });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const observer = new MutationObserver(() => {
@@ -2286,20 +2313,23 @@ export function ThirdPartyServicePanel({ defaultService = 'cloudspend', searchQu
       })
     : SERVICES;
 
-  // Auto-select first matching service when query changes
-  const effectiveService: ServiceId =
-    q && filteredServices.length > 0 && !filteredServices.find((s) => s.id === selectedService)
-      ? filteredServices[0].id
-      : selectedService;
+  // When search changes, navigate to first matching service if current isn't in results
+  useEffect(() => {
+    if (!q || filteredServices.length === 0) return;
+    if (!filteredServices.find(s => s.id === selectedService)) {
+      navigate(`/beyond-zoho-services/${labelToSlug(filteredServices[0].label)}`, { replace: true });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [q]);
 
-  const service = SERVICES.find((s) => s.id === effectiveService)!;
+  const service = SERVICES.find((s) => s.id === selectedService) ?? SERVICES[0];
 
   // When a query matches tools but not the service name, switch to tool-list tab
   const autoTab: TabId =
     q && service && !service.label.toLowerCase().includes(q) ? 'tool-list' : activeTab;
 
   // Filter tools for the active service
-  const allTools = SERVICE_TOOLS_MAP[effectiveService] ?? [];
+  const allTools = SERVICE_TOOLS_MAP[selectedService] ?? [];
   const displayTools = q ? allTools.filter((t) => t.tool.toLowerCase().includes(q)) : allTools;
 
   // Per-service logo overrides.
@@ -2375,12 +2405,12 @@ export function ThirdPartyServicePanel({ defaultService = 'cloudspend', searchQu
           ) : (
             filteredServices.map((svc) => {
               const Icon = svc.icon;
-              const isActive = svc.id === effectiveService;
+              const isActive = svc.id === selectedService;
               return (
                 <button
                   key={svc.id}
                   ref={isActive ? activeNavItemRef : undefined}
-                  onClick={() => setSelectedService(svc.id)}
+                  onClick={() => { navigate(`/beyond-zoho-services/${labelToSlug(svc.label)}`); setActiveTab('about'); }}
                   aria-label={svc.label}
                   className={cn(
                     'flex items-center gap-3 rounded-md px-2 py-2 text-sm font-medium transition-colors duration-150 w-full text-left',
@@ -2429,12 +2459,12 @@ export function ThirdPartyServicePanel({ defaultService = 'cloudspend', searchQu
           {/* Content header */}
           <div className="px-6 py-4 border-b border-border">
             <div className="flex items-center gap-3">
-              {SERVICE_LOGOS[effectiveService] ? (
-                isDark && SERVICE_LOGOS[effectiveService]!.dark ? (
-                  <img src={SERVICE_LOGOS[effectiveService]!.dark} alt={service.label} className="h-9 w-auto max-w-[200px] object-contain" />
+              {SERVICE_LOGOS[selectedService] ? (
+                isDark && SERVICE_LOGOS[selectedService]!.dark ? (
+                  <img src={SERVICE_LOGOS[selectedService]!.dark} alt={service.label} className="h-9 w-auto max-w-[200px] object-contain" />
                 ) : (
                   <>
-                    <img src={SERVICE_LOGOS[effectiveService]!.light} alt="" className="h-9 w-9 object-contain shrink-0" />
+                    <img src={SERVICE_LOGOS[selectedService]!.light} alt="" className="h-9 w-9 object-contain shrink-0" />
                     <h2 className="text-lg font-semibold leading-tight">{service.label}</h2>
                   </>
                 )
@@ -2470,9 +2500,9 @@ export function ThirdPartyServicePanel({ defaultService = 'cloudspend', searchQu
               <TabsContent value="about" className="flex-1">
                 <div className="rounded-lg border border-border bg-background p-5 h-full min-h-[280px] flex flex-col gap-3">
                   <h3 className="text-base font-semibold">About {service.label}</h3>
-                  {SERVICE_ABOUT[effectiveService] ? (
+                  {SERVICE_ABOUT[selectedService] ? (
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      {SERVICE_ABOUT[effectiveService]}
+                      {SERVICE_ABOUT[selectedService]}
                     </p>
                   ) : (
                     <p className="text-sm text-muted-foreground leading-relaxed">
@@ -2530,21 +2560,21 @@ export function ThirdPartyServicePanel({ defaultService = 'cloudspend', searchQu
               <TabsContent value="common-usecases" className="flex-1">
                 <div className="rounded-lg border border-border bg-background p-5 h-full min-h-[280px] flex flex-col gap-3">
                   <h3 className="text-base font-semibold">{service.label} — Common Usecases</h3>
-                  {effectiveService === 'cloudspend' ? (
+                  {selectedService === 'cloudspend' ? (
                     <CloudSpendUsecasesAccordion />
-                  ) : effectiveService === 'endpointcentral' ? (
+                  ) : selectedService === 'endpointcentral' ? (
                     <EndpointCentralUsecasesAccordion />
-                  ) : effectiveService === 'log360cloud' ? (
+                  ) : selectedService === 'log360cloud' ? (
                     <Log360CloudUsecasesAccordion />
-                  ) : effectiveService === 'mdm' ? (
+                  ) : selectedService === 'mdm' ? (
                     <MdmUsecasesAccordion />
-                  ) : effectiveService === 'qntrl' ? (
+                  ) : selectedService === 'qntrl' ? (
                     <QntrlUsecasesAccordion />
-                  ) : effectiveService === 'vani' ? (
+                  ) : selectedService === 'vani' ? (
                     <VaniUsecasesAccordion />
-                  ) : effectiveService === 'sdp-on-demand' ? (
+                  ) : selectedService === 'sdp-on-demand' ? (
                     <SdpOnDemandUsecasesAccordion />
-                  ) : effectiveService === 'site24x7' ? (
+                  ) : selectedService === 'site24x7' ? (
                     <Site24x7UsecasesAccordion />
                   ) : (
                     <p className="text-sm text-muted-foreground leading-relaxed">
