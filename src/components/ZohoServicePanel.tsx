@@ -13097,6 +13097,136 @@ function OneUsecasesAccordion() {
 }
 
 /* ─────────────────────────────────────────────
+   Zoho PageSense — Common Usecases Accordion
+───────────────────────────────────────────── */
+const PAGESENSE_USECASES: Usecase[] = [
+  {
+    id: 'setup-project-goals',
+    title: 'Setting Up a New Project and Configuring Conversion Goals',
+    subtitle: 'Create the project, embed the SmartCode, and configure multiple goal types in a single workflow.',
+    icon: Globe,
+    overview:
+      'When a team needs to start tracking and optimizing a website, an AI agent can create the project, configure the SmartCode for tracking, and set up multiple goal types in a single workflow, giving the team a fully instrumented project ready for experimentation from the start.',
+    steps: [
+      {
+        label: 'List all portals',
+        tools: ['listPortals'],
+        description:
+          'Use listPortals to retrieve all portals accessible to the authenticated user, identifying the correct portal under which the new project should be created. The domain_name field in each portal entry corresponds to the portal_name parameter used in all subsequent API calls.',
+      },
+      {
+        label: 'Create the project',
+        tools: ['createProject'],
+        description:
+          'Call createProject to create a new project under the identified portal, providing the display name and project type. The response returns the script_url for the SmartCode JavaScript file that must be embedded in the target website to activate experiment and goal tracking.',
+      },
+      {
+        label: 'Create an element click goal',
+        tools: ['createProjectGoal'],
+        description:
+          'Use createProjectGoal with goal_type: 4 to create an element click goal, specifying the CSS selector of the element to track and the goal URL. This captures conversions triggered by specific button or element clicks on the page.',
+      },
+      {
+        label: 'Create a time spent goal',
+        tools: ['createProjectGoal'],
+        description:
+          'Call createProjectGoal with goal_type: 8 to create a time spent goal, specifying the time threshold in seconds. This tracks visitors who engage with the page long enough to indicate genuine interest.',
+      },
+      {
+        label: 'Create a link click goal',
+        tools: ['createProjectGoal'],
+        description:
+          'Use createProjectGoal with goal_type: 2 to create a link click goal, specifying the destination URL pattern to track. This captures conversions triggered by visitors clicking through to a specific destination, such as a product page or signup form.',
+      },
+    ],
+  },
+  {
+    id: 'analyse-goal-performance',
+    title: 'Retrieving and Analysing Goal Performance Reports',
+    subtitle: 'Pull goal reports segmented by device, country, traffic source, and time to inform optimization decisions.',
+    icon: BarChart2,
+    overview:
+      'When a team needs to review the performance of configured goals across different dimensions, an AI agent can retrieve detailed goal reports segmented by device, country, traffic source, and time, giving the team the data they need to make informed optimization decisions.',
+    steps: [
+      {
+        label: 'List all project goals',
+        tools: ['listProjectGoals'],
+        description:
+          'Use listProjectGoals to retrieve the full list of goals configured for the project, identifying the specific goal_link_name of the goal to be reported on before pulling any performance data.',
+      },
+      {
+        label: 'Retrieve a summary report',
+        tools: ['getGoalReport'],
+        description:
+          'Call getGoalReport with report_type: summary to retrieve a high-level overview of visitors, conversions, and time spent for the goal within the specified date window, establishing a baseline picture of overall goal performance.',
+      },
+      {
+        label: 'Retrieve a device breakdown report',
+        tools: ['getGoalReport'],
+        description:
+          'Use getGoalReport with report_type: device to retrieve a breakdown of goal performance across desktop, mobile, and tablet, identifying which device segment is converting most effectively and where optimization effort should be focused.',
+      },
+      {
+        label: 'Retrieve a traffic source report',
+        tools: ['getGoalReport'],
+        description:
+          'Call getGoalReport with report_type: trafficsource to retrieve a breakdown of conversions by referral, direct, and search traffic, giving the team visibility into which acquisition channels are driving the most goal completions.',
+      },
+      {
+        label: 'Retrieve a country report',
+        tools: ['getGoalReport'],
+        description:
+          'Use getGoalReport with report_type: country to retrieve per-country goal metrics, helping the team identify geographic segments that are over or underperforming and informing any localization or targeting decisions.',
+      },
+    ],
+  },
+  {
+    id: 'audit-maintain-projects',
+    title: 'Auditing and Maintaining Projects and Goals',
+    subtitle: 'Retrieve all project and goal configurations, apply targeted updates, and remove stale entries.',
+    icon: ClipboardList,
+    overview:
+      'When a team needs to audit their PageSense setup, update outdated configurations, and clean up goals that are no longer relevant, an AI agent can retrieve all project and goal details, apply targeted updates, and remove stale entries without affecting historical report data.',
+    steps: [
+      {
+        label: 'Retrieve all projects',
+        tools: ['getAllProjects'],
+        description:
+          'Use getAllProjects to retrieve all projects configured under the portal, including experiment counts, tracking settings, and SmartCode URLs, giving the agent a complete picture of the current setup before making any changes.',
+      },
+      {
+        label: 'Retrieve a specific project',
+        tools: ['getProject'],
+        description:
+          'Call getProject using the project\'s project_link_name to pull the full configuration of the specific project being audited, confirming all settings are current and accurate.',
+      },
+      {
+        label: 'Update the project',
+        tools: ['updateProject'],
+        description:
+          'Use updateProject to apply any required changes to the project\'s display name or description. Note that the link_name field is immutable and cannot be changed after creation.',
+      },
+      {
+        label: 'Retrieve and update a goal',
+        tools: ['getProjectGoal', 'updateProjectGoal'],
+        description:
+          'Call getProjectGoal to retrieve the full configuration of a specific goal, including its include and exclude URL arrays, then use updateProjectGoal to apply any required updates. Note that goal_type and project_link_name are immutable once a goal has been created.',
+      },
+      {
+        label: 'Delete outdated goals',
+        tools: ['deleteProjectGoal'],
+        description:
+          'Use deleteProjectGoal to remove goals that are no longer relevant. Once deleted, the goal will no longer be tracked and cannot be associated with new experiments. Existing experiment reports continue to display historical data captured before the deletion.',
+      },
+    ],
+  },
+];
+
+function PageSenseUsecasesAccordion() {
+  return <UsecasesAccordionGroup usecases={PAGESENSE_USECASES} />;
+}
+
+/* ─────────────────────────────────────────────
    Zoho Procurement — Common Usecases Accordion
 ───────────────────────────────────────────── */
 const PROCUREMENT_USECASES: Usecase[] = [
@@ -13673,6 +13803,7 @@ const TOOL_COUNTS: Record<string, number> = {
   'zoho-meeting':          16,
   'zoho-office-integrator': 32,
   'zoho-one':              35,
+  'zoho-pagesense':        13,
   'zoho-procurement':      78,
   'zoho-show':             70,
   'zoho-tables':           74,
@@ -13711,6 +13842,7 @@ const SERVICES = [
   { id: 'zoho-notebook',   label: 'Zoho Notebook',         icon: BookMarked,    logoLight: 'https://mcp-manual-logos-development.zohostratus.in/Notebook-whiteBG.svg',                                 logoDark: 'https://mcp-manual-logos-development.zohostratus.in/Notebook-logo-lockup-darkBG.svg' },
   { id: 'zoho-office-integrator', label: 'Zoho Office Integrator', icon: FileText, logoLight: 'https://mcp-manual-logos-development.zohostratus.in/Office-Integrator-whiteBG.svg',                   logoDark: 'https://mcp-manual-logos-development.zohostratus.in/Office-Integrator-logo-lockup-darkBG.svg' },
   { id: 'zoho-one',          label: 'Zoho One',            icon: LayoutGrid,    logoLight: 'https://mcp-manual-logos-development.zohostratus.in/Zoho%20One-whiteBG.svg',                                             logoDark: 'https://mcp-manual-logos-development.zohostratus.in/Zoho%20One-logo-lockup-darkBG.svg' },
+  { id: 'zoho-pagesense',  label: 'Zoho PageSense',      icon: Globe,         logoLight: 'https://mcp-manual-logos-development.zohostratus.in/PageSense-whiteBG.svg',                               logoDark: 'https://mcp-manual-logos-development.zohostratus.in/PageSense-logo-lockup-darkBG.svg' },
   { id: 'zoho-payments',   label: 'Zoho Payments',         icon: Wallet,        logoLight: 'https://mcp-manual-logos-development.zohostratus.in/Payments-whiteBG.svg',                                 logoDark: 'https://mcp-manual-logos-development.zohostratus.in/Payments-logo-lockup-darkBG.svg' },
   { id: 'zoho-payroll',    label: 'Zoho Payroll',          icon: CreditCard,    logoLight: 'https://mcp-manual-logos-development.zohostratus.in/Payroll-whiteBG.svg',                                  logoDark: 'https://mcp-manual-logos-development.zohostratus.in/Payroll-logo-lockup-darkBG.svg' },
   { id: 'zoho-people',     label: 'Zoho People',           icon: Users,         logoLight: 'https://mcp-manual-logos-development.zohostratus.in/People-whiteBG.svg',                                   logoDark: 'https://mcp-manual-logos-development.zohostratus.in/People-logo-lockup-darkBG.svg' },
@@ -13822,7 +13954,6 @@ const APPTICS_TOOLS_INLINE = [
 const CATALYST_TOOLS_INLINE = [
   { tool: 'Add_User', purpose: "Adds a new user to the specified Catalyst project. The user will receive an invitation email based on the provided template details and will be assigned the specified role within the project." },
   { tool: 'Cancel_Build', purpose: "Cancels an in-progress build for a specific deployment resource within an application. This stops the build process and prevents further execution of the build pipeline." },
-  { tool: 'Cancel_Build', purpose: "Cancels an in-progress build for a specific deployment resource within an application. This stops the build process and prevents further execution of the build pipeline." },
   { tool: 'Configure_API_Gateway_Route', purpose: "Creates a new API endpoint in the API Gateway of the specified Catalyst project. The API configuration defines the route, method, and backend target for incoming requests." },
   { tool: 'Copy_Object', purpose: "Creates a copy of an object at a new destination within the same or different bucket." },
   { tool: 'Create_Bucket', purpose: "Creates a new storage bucket in the Stratus service of the specified Catalyst project. Buckets serve as top-level containers for organizing and storing objects." },
@@ -13831,14 +13962,11 @@ const CATALYST_TOOLS_INLINE = [
   { tool: 'Create_Cache_Item', purpose: "Creates a new cache item in the specified segment with a key, value, and optional expiration time." },
   { tool: 'Create_Column', purpose: "Creates a new column in the specified table with the defined data type, constraints, and properties such as mandatory, unique, or search indexing." },
   { tool: 'Create_CORS_Domain', purpose: "Adds a new CORS (Cross-Origin Resource Sharing) domain to the specified Catalyst project. This allows the project's APIs to accept requests from the specified origin domain." },
-  { tool: 'Create_CORS_Domain', purpose: "Adds a new CORS (Cross-Origin Resource Sharing) domain to the specified Catalyst project. This allows the project's APIs to accept requests from the specified origin domain." },
   { tool: 'Create_Cron_Job', purpose: "Creates a new scheduled cron job with specified timing configuration. Supports various repetition patterns including daily, weekly, monthly schedules with customizable time zones and execution targets." },
-  { tool: 'Create_Env_Variables', purpose: "Creates a new set of environment variables for a specific deployment resource. Allows defining key-value pairs that will be available to the deployed application at runtime." },
   { tool: 'Create_Env_Variables', purpose: "Creates a new set of environment variables for a specific deployment resource. Allows defining key-value pairs that will be available to the deployed application at runtime." },
   { tool: 'Create_Folder', purpose: "Creates a new folder in the FileStore of the specified Catalyst project. Folders help organize files and can be configured with audit consent settings for compliance tracking." },
   { tool: 'Create_Immediate_Job', purpose: "Creates and executes a one-time job immediately without scheduling. Use this to run ad-hoc tasks on demand with specified target configuration, request parameters, and optional callback notifications." },
   { tool: 'Create_Job_Pool', purpose: "Creates a new job pool in the job scheduling system of the specified Catalyst project. Job pools allow you to group and manage scheduled jobs with shared resource configurations." },
-  { tool: 'Create_Pipeline', purpose: "Creates a new pipeline in the specified Catalyst project. Pipelines define automated workflows for processing and transforming data." },
   { tool: 'Create_Pipeline', purpose: "Creates a new pipeline in the specified Catalyst project. Pipelines define automated workflows for processing and transforming data." },
   { tool: 'Create_Segment', purpose: "Creates a new cache segment in the specified Catalyst project. Segments provide logical grouping for cached key-value data and help organize cache entries." },
   { tool: 'Create_Table', purpose: "Creates a new table in the datastore with the specified name and scope. Tables serve as containers for structured data with defined columns." },
@@ -13847,7 +13975,6 @@ const CATALYST_TOOLS_INLINE = [
   { tool: 'Delete_Bucket', purpose: "Permanently deletes a storage bucket from the Stratus service of the specified Catalyst project. This action cannot be undone and may fail if the bucket still contains objects." },
   { tool: 'Delete_Cache_Item', purpose: "Deletes a specific cache item by its key from the specified segment, or clears all items if no key is provided." },
   { tool: 'Delete_Column', purpose: "Permanently removes a column from the table. All data stored in this column will be deleted. This action cannot be undone." },
-  { tool: 'Delete_CORS_Domain', purpose: "Removes a CORS domain from the specified Catalyst project. After deletion, cross-origin requests from the removed domain will no longer be accepted." },
   { tool: 'Delete_CORS_Domain', purpose: "Removes a CORS domain from the specified Catalyst project. After deletion, cross-origin requests from the removed domain will no longer be accepted." },
   { tool: 'Delete_Cron_Job', purpose: "Permanently deletes a scheduled cron job and all its associated execution history. This action cannot be undone." },
   { tool: 'Delete_File', purpose: "Permanently deletes a specific file from the FileStore. This action cannot be undone and the file cannot be recovered after deletion." },
@@ -13858,7 +13985,6 @@ const CATALYST_TOOLS_INLINE = [
   { tool: 'Delete_Objects', purpose: "Deletes one or more objects from the specified bucket. Supports batch deletion with optional TTL for soft delete." },
   { tool: 'Delete_Objects_By_Prefix', purpose: "Deletes all objects matching a specific prefix/path, effectively removing a folder and its contents." },
   { tool: 'Delete_Pipeline', purpose: "Permanently deletes the specified pipeline from the Catalyst project. This action cannot be undone." },
-  { tool: 'Delete_Pipeline', purpose: "Permanently deletes the specified pipeline from the Catalyst project. This action cannot be undone." },
   { tool: 'Delete_Project', purpose: "Permanently deletes the specified project and all its associated resources. This action cannot be undone." },
   { tool: 'Delete_Project_User', purpose: "Removes a user from the specified project. This action revokes the user's access to the project but does not delete their Zoho account." },
   { tool: 'Delete_Row_By_Id', purpose: "Deletes a specific row from the specified table in the datastore using the row's unique identifier." },
@@ -13866,7 +13992,6 @@ const CATALYST_TOOLS_INLINE = [
   { tool: 'Delete_Segment', purpose: "Permanently deletes a cache segment and all its cached data from the specified Catalyst project. This action cannot be undone." },
   { tool: 'Delete_Table', purpose: "Permanently deletes a table and all its associated data including columns and rows. This action cannot be undone." },
   { tool: 'Edit_Table', purpose: "Updates the configuration of an existing table including its name and scope settings." },
-  { tool: 'Enable_Authentication', purpose: "Enables authentication for the specified Catalyst project using the given authentication type. Once enabled, users will be required to authenticate before accessing protected resources." },
   { tool: 'Enable_Authentication', purpose: "Enables authentication for the specified Catalyst project using the given authentication type. Once enabled, users will be required to authenticate before accessing protected resources." },
   { tool: 'Enable_Or_Disable_Project_User', purpose: "Enables or disables a specific user in the Catalyst project based on the action specified in the path. The resourceId should be 'enable' or 'disable' to indicate the desired action. Disabling a user revokes their access without permanently deleting their account, while enabling restores their access." },
   { tool: 'Execute_Automation_Test', purpose: "Triggers the execution of an automation test suite. Returns execution details including run ID for tracking test progress and results." },
@@ -13886,14 +14011,12 @@ const CATALYST_TOOLS_INLINE = [
   { tool: 'Get_All_Objects', purpose: "Lists all objects in a bucket with support for pagination, prefix filtering, and folder-style listing." },
   { tool: 'Get_AppSail', purpose: "Retrieves details of a specific AppSail in the specified Catalyst project. Supports pagination using start and end indices to control the response data." },
   { tool: 'Get_Browser_Grid', purpose: "Retrieves the details of a specific browser grid identified by its unique ID within the specified project." },
-  { tool: 'Get_Browser_Grid', purpose: "Retrieves the details of a specific browser grid identified by its unique ID within the specified project." },
   { tool: 'Get_Bulk_Read_Job_Status', purpose: "Retrieves the status and details of a specific bulk read job, including progress, completion status, and download URL for results." },
   { tool: 'Get_Bulk_Write_Job_Status', purpose: "Retrieves the status and details of a specific bulk write job, including progress, records processed, and any errors encountered." },
   { tool: 'Get_Cache_Item_Value', purpose: "Retrieves the value of a cache item by its key from the specified segment." },
   { tool: 'Get_Circuit', purpose: "Retrieves detailed information about a specific circuit by its unique identifier, including its configuration and workflow steps." },
   { tool: 'Get_Column_By_Id', purpose: "Retrieves detailed information about a specific column including its data type, constraints, and configuration properties." },
   { tool: 'Get_Cron_Job_By_Id', purpose: "Retrieves detailed information about a specific cron job including its schedule configuration, execution history, success and failure counts." },
-  { tool: 'Get_Deployment', purpose: "Retrieves the details of a specific deployment by its resource identifier. Returns deployment metadata, status, and configuration information." },
   { tool: 'Get_Deployment', purpose: "Retrieves the details of a specific deployment by its resource identifier. Returns deployment metadata, status, and configuration information." },
   { tool: 'Get_File', purpose: "Retrieves the details and metadata of a specific file by its unique identifier, including file location, size, and timestamps." },
   { tool: 'Get_Folder', purpose: "Retrieves the details of a specific folder by its unique identifier, including metadata and associated file information." },
@@ -13909,7 +14032,6 @@ const CATALYST_TOOLS_INLINE = [
   { tool: 'Get_Rows', purpose: "Retrieves rows from the specified table with support for pagination using start/end indices or cursor-based pagination with next_token." },
   { tool: 'Get_Segment', purpose: "Retrieves the details of a specific cache segment identified by its unique ID or name within the specified Catalyst project." },
   { tool: 'Get_Slate_App', purpose: "Retrieves the details of a specific app by its identifier within the specified project. Returns the app's metadata and configuration." },
-  { tool: 'Get_Slate_App', purpose: "Retrieves the details of a specific app by its identifier within the specified project. Returns the app's metadata and configuration." },
   { tool: 'Get_Table_By_Id', purpose: "Retrieves detailed information about a specific table including its column definitions, constraints, and metadata." },
   { tool: 'Get_Table_Permissions', purpose: "Retrieves the permission settings configured for the specified table in the Datastore. This includes access control rules that determine how the table can be accessed by different roles." },
   { tool: 'Get_Table_Scopes', purpose: "Retrieves the scope configuration of the specified table. Scopes define the access level of the table, such as global, org, or user level." },
@@ -13918,19 +14040,14 @@ const CATALYST_TOOLS_INLINE = [
   { tool: 'Head_Object', purpose: "Retrieves metadata for a specific object without downloading the object content. Useful for checking existence and properties." },
   { tool: 'Insert_Rows', purpose: "Inserts one or more new rows into the specified table. Supports bulk insertion by providing an array of row objects." },
   { tool: 'Lead_Enrichment', purpose: "Enriches lead data by retrieving additional company and contact information from Catalyst Dataverse." },
-  { tool: 'Lead_Enrichment', purpose: "Enriches lead data by retrieving additional company and contact information from Catalyst Dataverse." },
   { tool: 'List_All_API_route', purpose: "Retrieves a list of APIs configured in the API Gateway of the specified Catalyst project. Supports pagination, partial name search, filtering by creation source, and optional enhanced response details." },
   { tool: 'List_All_AppSail', purpose: "Retrieves all AppSail configured in the specified Catalyst project. Supports filtering to narrow down results based on application attributes." },
-  { tool: 'List_All_Browser_Grids', purpose: "Retrieves all browser grids configured within the specified project. Returns a list of browser grid details including their configurations and metadata." },
   { tool: 'List_All_Browser_Grids', purpose: "Retrieves all browser grids configured within the specified project. Returns a list of browser grid details including their configurations and metadata." },
   { tool: 'List_All_Circuits', purpose: "Retrieves all circuits configured in the specified Catalyst project." },
   { tool: 'List_All_Columns', purpose: "Retrieves all columns defined in the specified table including their data types, constraints, and configuration properties." },
   { tool: 'List_All_CORS_Domains', purpose: "Retrieves all CORS domains configured for the specified Catalyst project. Each entry represents an allowed origin that can make cross-origin requests to the project's APIs." },
-  { tool: 'List_All_CORS_Domains', purpose: "Retrieves all CORS domains configured for the specified Catalyst project. Each entry represents an allowed origin that can make cross-origin requests to the project's APIs." },
   { tool: 'List_All_Crons', purpose: "Retrieves all scheduled cron jobs configured for the project. Returns a list of cron jobs with their scheduling configuration, execution types, and status information." },
   { tool: 'List_All_Deployments', purpose: "Retrieves all deployments associated with a specific application within a project. Returns a list of deployment details including metadata and status information." },
-  { tool: 'List_All_Deployments', purpose: "Retrieves all deployments associated with a specific application within a project. Returns a list of deployment details including metadata and status information." },
-  { tool: 'List_All_Env_Variables', purpose: "Retrieves all environment variables configured for a specific deployment resource. Returns the list of key-value pairs and associated metadata for the deployment's environment configuration." },
   { tool: 'List_All_Env_Variables', purpose: "Retrieves all environment variables configured for a specific deployment resource. Returns the list of key-value pairs and associated metadata for the deployment's environment configuration." },
   { tool: 'List_All_Files', purpose: "Retrieves a paginated list of all files within a specific folder. Use pagination parameters to control the number of results returned." },
   { tool: 'List_All_Folders', purpose: "Retrieves a list of all folders in the FileStore of the specified Catalyst project. Optionally filter results by specific folder IDs." },
@@ -13943,27 +14060,20 @@ const CATALYST_TOOLS_INLINE = [
   { tool: 'List_All_Roles', purpose: "Retrieves all roles defined in the specified Catalyst project. Roles are used to manage access control and permissions for project users." },
   { tool: 'List_All_Segments', purpose: "Retrieves all cache segments configured in the specified Catalyst project. Segments are logical partitions used to organize cached data." },
   { tool: 'List_All_Slate_Apps', purpose: "Retrieves all apps associated with the specified project. Returns a list of app details including metadata and configuration." },
-  { tool: 'List_All_Slate_Apps', purpose: "Retrieves all apps associated with the specified project. Returns a list of app details including metadata and configuration." },
   { tool: 'List_All_Tables', purpose: "Retrieves all tables defined in the project's datastore. Returns table metadata including names, IDs, and column information." },
   { tool: 'List_All_Web_Apps', purpose: "Retrieves all web apps associated with the specified Catalyst project. Returns configuration details for each hosted web application." },
   { tool: 'Patch_Rows', purpose: "Partially updates one or more existing rows in the table. Only the specified columns are updated while preserving other values. Supports bulk partial updates." },
   { tool: 'Redeploy_a_deployment', purpose: "Triggers a redeployment of a previously deployed application resource. Allows specifying a particular commit to redeploy from, enabling rollback or targeted release scenarios." },
-  { tool: 'Redeploy_a_deployment', purpose: "Triggers a redeployment of a previously deployed application resource. Allows specifying a particular commit to redeploy from, enabling rollback or targeted release scenarios." },
   { tool: 'Rename_Object', purpose: "Renames an existing object in the bucket by changing its key/path while preserving the content." },
   { tool: 'Rollback_Build', purpose: "Initiates a rollback operation for a specific application deployment, reverting it to a previous version or state. This updates the deployment resource to restore a prior configuration." },
-  { tool: 'Rollback_Build', purpose: "Initiates a rollback operation for a specific application deployment, reverting it to a previous version or state. This updates the deployment resource to restore a prior configuration." },
   { tool: 'Similar_Companies', purpose: "Finds companies similar to a given company using Catalyst Dataverse intelligence, useful for lead discovery and competitive research." },
-  { tool: 'Similar_Companies', purpose: "Finds companies similar to a given company using Catalyst Dataverse intelligence, useful for lead discovery and competitive research." },
-  { tool: 'Stop_BrowserGrid', purpose: "Stops a running browser grid session identified by the given ID. This terminates all active browser connections and releases associated resources." },
   { tool: 'Stop_BrowserGrid', purpose: "Stops a running browser grid session identified by the given ID. This terminates all active browser connections and releases associated resources." },
   { tool: 'Submit_Cron_Job', purpose: "Manually triggers an immediate execution of a scheduled cron job. Useful for testing or running a cron job outside its normal schedule." },
-  { tool: 'Tech_Stack_Finder', purpose: "Identifies the technology stack used by a company or domain using Catalyst Dataverse, useful for sales intelligence and lead qualification." },
   { tool: 'Tech_Stack_Finder', purpose: "Identifies the technology stack used by a company or domain using Catalyst Dataverse, useful for sales intelligence and lead qualification." },
   { tool: 'Truncate_Table', purpose: "Removes all rows from the specified table while preserving the table structure and column definitions. This is more efficient than deleting rows individually." },
   { tool: 'Update_Bucket', purpose: "Updates the configuration of an existing storage bucket in the Stratus service. The target bucket is identified by its name provided as a query parameter." },
   { tool: 'Update_Cache_Item', purpose: "Updates an existing cache item's value and/or expiration time in the specified segment." },
   { tool: 'Update_Column', purpose: "Updates the configuration of an existing column including its name, constraints, default value, and other properties." },
-  { tool: 'Update_CORS_Domain', purpose: "Updates an existing CORS domain entry for the specified Catalyst project. Use this to modify the allowed origin URL of a previously configured domain." },
   { tool: 'Update_CORS_Domain', purpose: "Updates an existing CORS domain entry for the specified Catalyst project. Use this to modify the allowed origin URL of a previously configured domain." },
   { tool: 'Update_Cron_Job', purpose: "Updates the configuration of an existing scheduled cron job including its timing schedule, execution target, and job metadata." },
   { tool: 'Update_Cron_Job_Status', purpose: "Enables or disables a scheduled cron job without modifying its configuration. Use this to temporarily pause or resume scheduled executions." },
@@ -13972,7 +14082,6 @@ const CATALYST_TOOLS_INLINE = [
   { tool: 'Update_Function', purpose: "Updates a serverless function in the specified Catalyst project. Before calling this tool, first use the 'List All Functions' tool to retrieve all available functions and present them to the user. Ask the user which function they want to update. Only 'stack' and 'memory' are updatable fields. The 'name' and 'type' must be sent in the request but are identifiers taken from the existing function details returned by 'List All Functions' and cannot be changed. All four fields (stack, name, type, memory) are sent as form data in the request." },
   { tool: 'Update_Job_Pool', purpose: "Updates an existing job pool in the job scheduling system of the specified Catalyst project. All mutable properties of the job pool are replaced with the provided values." },
   { tool: 'Update_Object_Metadata', purpose: "Updates the metadata (custom properties) of an existing object without modifying the object content." },
-  { tool: 'Update_Pipeline', purpose: "Partially updates the configuration of a specified pipeline in the Catalyst project. Supports updating the pipeline name and enabling or disabling the pipeline via query parameters." },
   { tool: 'Update_Pipeline', purpose: "Partially updates the configuration of a specified pipeline in the Catalyst project. Supports updating the pipeline name and enabling or disabling the pipeline via query parameters." },
   { tool: 'Update_Project_User', purpose: "Updates the details of a specific user associated with the Catalyst project. This can be used to modify user attributes such as role assignments or profile information." },
   { tool: 'Update_Rows', purpose: "Updates one or more existing rows in the table. Each row object must include the ROWID to identify the row to update. Supports bulk updates." },
@@ -15984,6 +16093,21 @@ const ONE_TOOLS_INLINE: { tool: string; purpose: string }[] = [
   { tool: 'update_user_activate', purpose: 'Activates a user.' },
 ];
 
+const PAGESENSE_TOOLS_INLINE: { tool: string; purpose: string }[] = [
+  { tool: 'createProject', purpose: 'Creates a new PageSense project under the given portal. Returns the SmartCode script_url to embed on the target website.' },
+  { tool: 'createProjectGoal', purpose: 'Creates a new conversion goal for a project. Supports Element Click (goal_type 4), Link Click (2), Time Spent (8), and Custom Event (6) goal types.' },
+  { tool: 'deleteProject', purpose: 'Permanently deletes a project and all its associated experiments and goals. This action cannot be undone.' },
+  { tool: 'deleteProjectGoal', purpose: 'Deletes a project goal by its link name. Historical report data is preserved but the goal will no longer be tracked.' },
+  { tool: 'getAllProjects', purpose: 'Returns all projects configured under the given portal, including experiment counts, tracking settings, and SmartCode URLs.' },
+  { tool: 'getGoalReport', purpose: 'Retrieves a performance report for a goal. Report type controls the dimension: summary, device, country, trafficsource, chart_conversions, url, usertype, or overview.' },
+  { tool: 'getProject', purpose: 'Returns the full configuration of a single project identified by its project_link_name.' },
+  { tool: 'getProjectGoal', purpose: 'Returns the detailed configuration for a single project goal, including include/exclude URL arrays and type-specific fields.' },
+  { tool: 'getWebAnalyticsReport', purpose: 'Retrieves web analytics report data for a project. Report type controls the schema: time_line, compute_metrics, or total_stats.' },
+  { tool: 'listPortals', purpose: 'Returns all portals accessible to the authenticated user. The domain_name field maps to the portal_name parameter used in all other PageSense endpoints.' },
+  { tool: 'listProjectGoals', purpose: 'Returns all goals configured for a project, including type-specific fields for each goal.' },
+  { tool: 'updateProject', purpose: 'Updates an existing project\'s display name or description. The link_name field is immutable and cannot be changed.' },
+  { tool: 'updateProjectGoal', purpose: 'Updates an existing project goal\'s configuration. goal_type and project_link_name are immutable once a goal is created.' },
+];
 
 const PROCUREMENT_TOOLS_INLINE: { tool: string; purpose: string }[] = [
   { tool: 'add_document_to_request_for_quote', purpose: 'Attach a document to a request for quote.' },
@@ -16301,6 +16425,7 @@ const ZOHO_SERVICE_TOOLS: Record<string, { tool: string; purpose: string }[]> = 
   'zoho-meeting':   MEETING_TOOLS_INLINE,
   'zoho-office-integrator': OFFICE_INTEGRATOR_TOOLS_INLINE,
   'zoho-one':       ONE_TOOLS_INLINE,
+  'zoho-pagesense': PAGESENSE_TOOLS_INLINE,
   'zoho-procurement': PROCUREMENT_TOOLS_INLINE,
   'zoho-show':       SHOW_TOOLS_INLINE,
   'zoho-tables':     TABLES_TOOLS_INLINE,
@@ -16869,6 +16994,15 @@ export function ZohoServicePanel({ defaultService = 'zoho-crm', searchQuery = ''
                                       At its core, Zoho One provides centralized administration through a shared organizational layer, where users, departments, groups, designations, and work locations are managed once and applied consistently across all applications in the suite. This means administrators can provision employees, structure the organization, and control access without having to configure each application independently. Combined with single sign-on, role-based access control, and integration capabilities across the Zoho ecosystem, Zoho One gives organizations the infrastructure to run their entire business from one place.
                                     </p>
                                   </div>
+                                 ) : selectedService === 'zoho-pagesense' ? (
+                                  <div className="flex flex-col gap-3">
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                      Zoho PageSense is a conversion optimization and personalization platform that helps you optimize your website, personalize pages to suit your target audience, and boost the overall conversion rate. It goes beyond standard analytics by helping teams understand not just what visitors do on a website but why, and what can be changed to improve outcomes. Zoho PageSense comes with all the tools and features needed to track, experiment, personalize, and optimize a website for improved conversions.
+                                    </p>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                      Its Goals feature records website conversions over time and across countries, devices, and audience segments. Funnel Analysis maps visitor journeys and provides a visual graph of where visitors drop off. Heatmaps deliver a real-time visual report of visitor clicks, scrolls, and engagement, while form analytics surfaces field-level metrics including hesitation points, time to submit, and abandonment patterns. With support for A/B testing, session recording, web analytics, and integrations with popular analytics and CRM tools, Zoho PageSense gives teams a complete data-driven foundation for making informed optimization decisions.
+                                    </p>
+                                  </div>
                                  ) : selectedService === 'zoho-procurement' ? (
                                   <div className="flex flex-col gap-3">
                                     <p className="text-sm text-muted-foreground leading-relaxed">
@@ -16964,7 +17098,7 @@ export function ZohoServicePanel({ defaultService = 'zoho-crm', searchQuery = ''
             <TabsContent value="tool-list" className="flex-1">
               <div className="rounded-lg border border-border bg-background p-5 h-full min-h-[280px] flex flex-col gap-3">
                 <h3 className="text-base font-semibold">{service.label} — Tool List ({TOOL_COUNTS[selectedService] ?? 0})</h3>
-                     {selectedService === 'bigin' || selectedService === 'catalyst' || selectedService === 'zoho-analytics' || selectedService === 'zoho-apptics' || selectedService === 'zoho-assist' || selectedService === 'zoho-billing' || selectedService === 'zoho-bookings' || selectedService === 'zoho-books' || selectedService === 'zoho-calendar' || selectedService === 'zoho-cliq' || selectedService === 'zoho-commerce' || selectedService === 'zoho-creator' || selectedService === 'zoho-crm' || selectedService === 'zoho-dataprep' || selectedService === 'zoho-expense' || selectedService === 'zoho-desk' || selectedService === 'zoho-inventory' || selectedService === 'zoho-invoice' || selectedService === 'zoho-learn' || selectedService === 'zoho-lens' || selectedService === 'zoho-mail' || selectedService === 'zoho-notebook' || selectedService === 'zoho-payments' || selectedService === 'zoho-payroll' || selectedService === 'zoho-people' || selectedService === 'zoho-pos' || selectedService === 'zoho-projects' || selectedService === 'zoho-recruit' || selectedService === 'zoho-salesiq' || selectedService === 'zoho-sheet' || selectedService === 'zoho-sign' || selectedService === 'zoho-social' || selectedService === 'zoho-sprints' || selectedService === 'zoho-survey' || selectedService === 'zoho-vertical' || selectedService === 'zoho-workdrive' || selectedService === 'zoho-writer' || selectedService === 'zoho-backstage' || selectedService === 'zoho-commandcenter' || selectedService === 'zoho-connect' || selectedService === 'zoho-directory' || selectedService === 'zoho-erp' || selectedService === 'zoho-iot' || selectedService === 'zoho-meeting' || selectedService === 'zoho-office-integrator' || selectedService === 'zoho-one' || selectedService === 'zoho-procurement' || selectedService === 'zoho-show' || selectedService === 'zoho-tables' || selectedService === 'zoho-webinar' ? (
+                     {selectedService === 'bigin' || selectedService === 'catalyst' || selectedService === 'zoho-analytics' || selectedService === 'zoho-apptics' || selectedService === 'zoho-assist' || selectedService === 'zoho-billing' || selectedService === 'zoho-bookings' || selectedService === 'zoho-books' || selectedService === 'zoho-calendar' || selectedService === 'zoho-cliq' || selectedService === 'zoho-commerce' || selectedService === 'zoho-creator' || selectedService === 'zoho-crm' || selectedService === 'zoho-dataprep' || selectedService === 'zoho-expense' || selectedService === 'zoho-desk' || selectedService === 'zoho-inventory' || selectedService === 'zoho-invoice' || selectedService === 'zoho-learn' || selectedService === 'zoho-lens' || selectedService === 'zoho-mail' || selectedService === 'zoho-notebook' || selectedService === 'zoho-payments' || selectedService === 'zoho-payroll' || selectedService === 'zoho-people' || selectedService === 'zoho-pos' || selectedService === 'zoho-projects' || selectedService === 'zoho-recruit' || selectedService === 'zoho-salesiq' || selectedService === 'zoho-sheet' || selectedService === 'zoho-sign' || selectedService === 'zoho-social' || selectedService === 'zoho-sprints' || selectedService === 'zoho-survey' || selectedService === 'zoho-vertical' || selectedService === 'zoho-workdrive' || selectedService === 'zoho-writer' || selectedService === 'zoho-backstage' || selectedService === 'zoho-commandcenter' || selectedService === 'zoho-connect' || selectedService === 'zoho-directory' || selectedService === 'zoho-erp' || selectedService === 'zoho-iot' || selectedService === 'zoho-meeting' || selectedService === 'zoho-office-integrator' || selectedService === 'zoho-one' || selectedService === 'zoho-pagesense' || selectedService === 'zoho-procurement' || selectedService === 'zoho-show' || selectedService === 'zoho-tables' || selectedService === 'zoho-webinar' ? (
                    <div className="overflow-auto rounded-md border border-border">
                      <table className="w-full text-sm">
                        <thead>
@@ -17036,6 +17170,7 @@ export function ZohoServicePanel({ defaultService = 'zoho-crm', searchQuery = ''
                                                                   : selectedService === 'zoho-meeting' ? MEETING_TOOLS_INLINE
                                                                   : selectedService === 'zoho-office-integrator' ? OFFICE_INTEGRATOR_TOOLS_INLINE
                                                                   : selectedService === 'zoho-one' ? ONE_TOOLS_INLINE
+                                                                  : selectedService === 'zoho-pagesense' ? PAGESENSE_TOOLS_INLINE
                                                                   : selectedService === 'zoho-procurement' ? PROCUREMENT_TOOLS_INLINE
                                                                   : selectedService === 'zoho-show' ? SHOW_TOOLS_INLINE
                                                                   : selectedService === 'zoho-tables' ? TABLES_TOOLS_INLINE
@@ -17412,6 +17547,8 @@ export function ZohoServicePanel({ defaultService = 'zoho-crm', searchQuery = ''
                                                            <OfficeIntegratorUsecasesAccordion />
                                                          ) : selectedService === 'zoho-one' ? (
                                                            <OneUsecasesAccordion />
+                                                         ) : selectedService === 'zoho-pagesense' ? (
+                                                           <PageSenseUsecasesAccordion />
                                                          ) : selectedService === 'zoho-procurement' ? (
                                                            <ProcurementUsecasesAccordion />
                                                          ) : selectedService === 'zoho-show' ? (
