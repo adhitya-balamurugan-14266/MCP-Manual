@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sun, Moon, ArrowRight, Layers, Plug } from 'lucide-react';
+import { Sun, Moon, ArrowRight, Layers, Plug, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { BottomActions } from '@/components/BottomActions';
@@ -121,7 +121,7 @@ function App() {
             <CardHeader className="pb-3">
               <div className="flex items-center gap-3 mb-1">
                 <div className="h-10 w-10 rounded-lg bg-muted flex items-center justify-center">
-                  <Plug className="size-5 text-foreground" />
+                  <Globe className="size-5 text-foreground" />
                 </div>
                 <CardTitle className="text-xl">Beyond Zoho Services</CardTitle>
               </div>
