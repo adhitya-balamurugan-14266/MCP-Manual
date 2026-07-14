@@ -10955,10 +10955,10 @@ const SOCIAL_USECASES: Usecase[] = [
       'A social media manager uses getSocialBrands and getSocialChannels to confirm which networks are active and ready for publishing. Before sending anything live, getSocialNetworkProperties surfaces character limits, media constraints, and feature support per network so the post is built correctly. uploadSocialMedia or uploadSocialMediaFromUrl adds the visual assets to the brand\'s library. Once the post is composed, validateSocialPost checks it against all network-specific rules, and only after a clean validation pass does publishSocialPost send it immediately across all targeted channels.',
     steps: [
       {
-        label: 'Confirm active brands and channels',
-        tools: ['getSocialBrands', 'getSocialChannels'],
+        label: 'Confirm portal, brand, and channel context',
+        tools: ['getSocialPortals', 'getSocialBrands', 'getSocialChannels'],
         description:
-          'A social media manager uses getSocialBrands and getSocialChannels to confirm which networks are active and ready for publishing.',
+          'getSocialPortals identifies the portal to operate in. getSocialBrands and getSocialChannels then confirm which brand and networks are active and ready for publishing. These three tools are prerequisites for all Zoho Social operations.',
       },
       {
         label: 'Surface network constraints',
@@ -10994,6 +10994,12 @@ const SOCIAL_USECASES: Usecase[] = [
     overview:
       'A content team working ahead of a campaign uses createSocialDraft to save unfinished posts that are still being reviewed, then listSocialDrafts to keep track of what\'s in progress. When a draft is ready, validateSocialPost confirms it meets all constraints, and updateSocialDraft converts it from a draft to a scheduled post with a target publish time. listSocialSchedules gives the team a full view of what\'s queued across networks, and getSocialPostCount provides a quick status summary of drafts, scheduled, and pending posts across the pipeline. If a scheduled post needs adjusting, updateSocialSchedule updates it in place, and deleteSocialSchedule removes anything that\'s no longer needed.',
     steps: [
+      {
+        label: 'Fetch portal, brand, and channel context',
+        tools: ['getSocialPortals', 'getSocialBrands', 'getSocialChannels'],
+        description:
+          'getSocialPortals identifies the portal to operate in. getSocialBrands and getSocialChannels resolve the target brand and its connected networks. These three tools are prerequisites and must be called before any other Zoho Social operation.',
+      },
       {
         label: 'Save unfinished posts as drafts',
         tools: ['createSocialDraft'],
@@ -11034,6 +11040,12 @@ const SOCIAL_USECASES: Usecase[] = [
     overview:
       'A brand running Pinterest campaigns uses getSocialPinterestBoards to see all existing boards before deciding where to pin. When a new product category launches, createSocialPinterestBoard sets up the board with the right privacy setting. getSocialMediaLibrary lets the team browse and reuse existing visuals already in the brand library rather than re-uploading duplicates. For new assets, uploadSocialMedia handles file uploads and returns the file ID needed to attach images to posts. validateSocialPost then checks that the board ID, image format, and content length all meet Pinterest\'s requirements before createSocialSchedule queues the pin at the right time.',
     steps: [
+      {
+        label: 'Fetch portal, brand, and channel context',
+        tools: ['getSocialPortals', 'getSocialBrands', 'getSocialChannels'],
+        description:
+          'getSocialPortals identifies the portal to operate in. getSocialBrands and getSocialChannels resolve the target brand and its connected networks including the Pinterest channel. These three tools are prerequisites and must be called before any other Zoho Social operation.',
+      },
       {
         label: 'Browse existing Pinterest boards',
         tools: ['getSocialPinterestBoards'],
