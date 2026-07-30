@@ -1563,37 +1563,37 @@ const SDP_ON_DEMAND_TOOLS: { tool: string; purpose: string }[] = [
   { tool: 'addRequest', purpose: 'Create a new request.' },
   { tool: 'addRequestNote', purpose: 'Create a new request note.' },
   { tool: 'addRequestNotification', purpose: 'Create a new request notification.' },
-  { tool: 'cmdbBulkUpdateCIs', purpose: 'Updates multiple Configuration Items of the same type with identical field values in a single call.' },
-  { tool: 'cmdbCreateBaseline', purpose: 'Schedules a new baseline capture for all CIs covered by the configuration.' },
-  { tool: 'cmdbCreateCI', purpose: 'Creates a new Configuration Item under the given CI Type.' },
-  { tool: 'cmdbCreateCIRelationship', purpose: 'Creates a relationship between this CI and another CI.' },
-  { tool: 'cmdbCreateDataQualityPolicy', purpose: 'Creates a completeness, staleness, or orphan data quality policy for a CI Type.' },
-  { tool: 'cmdbDeleteCIRelationship', purpose: 'Removes a specific relationship from a Configuration Item by its relationship ID.' },
-  { tool: 'cmdbDeleteCIs', purpose: 'Permanently deletes one or more Configuration Items. Pass a single ID or comma-separated list in the `ids` query parameter.' },
-  { tool: 'cmdbExecuteDataQualityPolicy', purpose: 'Triggers an ad-hoc execution of a specific data quality policy.' },
-  { tool: 'cmdbFindAllCIs', purpose: 'Retrieves Configuration Items across all CI Types in the CMDB. Only global CMDB-level fields are available for filtering.' },
-  { tool: 'cmdbFindCITypes', purpose: 'Retrieves CI Types (CI Classes) available in the CMDB with optional search criteria filtering.' },
-  { tool: 'cmdbFindCIs', purpose: 'Retrieves a paginated list of Configuration Items for the given CI Type with optional filtering, sorting, and search criteria.' },
-  { tool: 'cmdbFindChangesByCi', purpose: 'Retrieves change records associated with a specific CI.' },
-  { tool: 'cmdbFindContractsByCi', purpose: 'Retrieves contracts associated with a specific CI.' },
-  { tool: 'cmdbFindProblemsByCi', purpose: 'Retrieves problem records associated with a specific CI.' },
-  { tool: 'cmdbFindRelationshipTypes', purpose: 'Retrieves available relationship types that define how CIs can be connected.' },
-  { tool: 'cmdbFindRelationships', purpose: 'Retrieves all relationships for a specific Configuration Item, including relationship type, direction, and related CI details.' },
-  { tool: 'cmdbFindReleasesByCi', purpose: 'Retrieves release records associated with a specific CI.' },
-  { tool: 'cmdbFindRequestsByCi', purpose: 'Retrieves requests (incidents) associated with a specific CI.' },
-  { tool: 'cmdbGetBaselineConfiguration', purpose: 'Retrieves full details of a baseline configuration including which CI Types it covers and its enabled/disabled status.' },
-  { tool: 'cmdbGetCI', purpose: 'Retrieves full details of a specific Configuration Item by its ID, including all standard fields and CI-type-specific attributes.' },
-  { tool: 'cmdbGetCiBaselines', purpose: 'Retrieves baseline snapshots associated with a CI.' },
-  { tool: 'cmdbGetCiHistory', purpose: 'Retrieves the full audit trail of changes made to a CI.' },
-  { tool: 'cmdbGetCiInstanceMetainfo', purpose: 'Retrieves field metadata for a specific CI instance.' },
-  { tool: 'cmdbGetCiMetainfo', purpose: 'Retrieves field metadata for CIs of this type, including field definitions, types, and constraints.' },
-  { tool: 'cmdbGetCiSummary', purpose: 'Retrieves a summary of all associations for a CI — counts of requests, changes, problems, releases, contracts, downtimes, and baselines.' },
-  { tool: 'cmdbListBaselineConfigurations', purpose: 'Retrieves baseline configurations available for a CI Type.' },
-  { tool: 'cmdbListCiAttributeAllowedValues', purpose: 'Retrieves allowed values for a lookup or reference CI attribute.' },
-  { tool: 'cmdbListDataQualityPolicies', purpose: 'Retrieves all configured data quality policies for a CI Type.' },
-  { tool: 'cmdbListIntegrations', purpose: 'Retrieves integration sources that have synced CIs into the CMDB.' },
-  { tool: 'cmdbListStates', purpose: 'Retrieves all lifecycle states available in the CMDB.' },
-  { tool: 'cmdbUpdateCI', purpose: 'Updates an existing Configuration Item\'s fields.' },
+  { tool: 'cmdbBulkUpdateCIs', purpose: 'Updates multiple Configuration Items of the same type with identical field values in a single call.\n' },
+  { tool: 'cmdbCreateBaseline', purpose: 'Schedules a new baseline capture for all CIs covered by the configuration.\n' },
+  { tool: 'cmdbCreateCI', purpose: 'Creates a new Configuration Item under the given CI Type.\n' },
+  { tool: 'cmdbCreateCIRelationship', purpose: 'Creates a relationship between this CI and another CI.\n' },
+  { tool: 'cmdbCreateDataQualityPolicy', purpose: 'Creates a completeness, staleness, or orphan data quality policy for a CI Type.\n' },
+  { tool: 'cmdbDeleteCIRelationship', purpose: 'Removes a specific relationship from a Configuration Item by its relationship ID.\n' },
+  { tool: 'cmdbDeleteCIs', purpose: 'Permanently deletes one or more Configuration Items. Pass a single ID or comma-separated list in the `ids` query parameter.\n' },
+  { tool: 'cmdbExecuteDataQualityPolicy', purpose: 'Triggers an ad-hoc execution of a specific data quality policy.\n' },
+  { tool: 'cmdbFindAllCIs', purpose: 'Retrieves Configuration Items across all CI Types in the CMDB. Only global CMDB-level fields are available for filtering.\n' },
+  { tool: 'cmdbFindChangesByCi', purpose: 'Retrieves change records associated with a specific CI.\n' },
+  { tool: 'cmdbFindCIs', purpose: 'Retrieves a paginated list of Configuration Items for the given CI Type with optional filtering, sorting, and search criteria.\n' },
+  { tool: 'cmdbFindCITypes', purpose: 'Retrieves CI Types (CI Classes) available in the CMDB with optional search criteria filtering.\n' },
+  { tool: 'cmdbFindContractsByCi', purpose: 'Retrieves contracts associated with a specific CI.\n' },
+  { tool: 'cmdbFindProblemsByCi', purpose: 'Retrieves problem records associated with a specific CI.\n' },
+  { tool: 'cmdbFindRelationships', purpose: 'Retrieves all relationships for a specific Configuration Item, including relationship type, direction, and related CI details.\n' },
+  { tool: 'cmdbFindRelationshipTypes', purpose: 'Retrieves available relationship types that define how CIs can be connected.\n' },
+  { tool: 'cmdbFindReleasesByCi', purpose: 'Retrieves release records associated with a specific CI.\n' },
+  { tool: 'cmdbFindRequestsByCi', purpose: 'Retrieves requests (incidents) associated with a specific CI.\n' },
+  { tool: 'cmdbGetBaselineConfiguration', purpose: 'Retrieves full details of a baseline configuration including which CI Types it covers and its enabled/disabled status.\n' },
+  { tool: 'cmdbGetCI', purpose: 'Retrieves full details of a specific Configuration Item by its ID, including all standard fields and CI-type-specific attributes.\n' },
+  { tool: 'cmdbGetCiBaselines', purpose: 'Retrieves baseline snapshots associated with a CI.\n' },
+  { tool: 'cmdbGetCiHistory', purpose: 'Retrieves the full audit trail of changes made to a CI.\n' },
+  { tool: 'cmdbGetCiInstanceMetainfo', purpose: 'Retrieves field metadata for a specific CI instance.\n' },
+  { tool: 'cmdbGetCiMetainfo', purpose: 'Retrieves field metadata for CIs of this type, including field definitions, types, and constraints.\n' },
+  { tool: 'cmdbGetCiSummary', purpose: 'Retrieves a summary of all associations for a CI -- counts of requests, changes, problems, releases, contracts, downtimes, and baselines.\n' },
+  { tool: 'cmdbListBaselineConfigurations', purpose: 'Retrieves baseline configurations available for a CI Type.\n' },
+  { tool: 'cmdbListCiAttributeAllowedValues', purpose: 'Retrieves allowed values for a lookup or reference CI attribute.\n' },
+  { tool: 'cmdbListDataQualityPolicies', purpose: 'Retrieves all configured data quality policies for a CI Type.\n' },
+  { tool: 'cmdbListIntegrations', purpose: 'Retrieves integration sources that have synced CIs into the CMDB.\n' },
+  { tool: 'cmdbListStates', purpose: 'Retrieves all lifecycle states available in the CMDB.\n' },
+  { tool: 'cmdbUpdateCI', purpose: 'Updates an existing Configuration Item\'s fields.\n' },
   { tool: 'editRequest', purpose: 'Update an existing request.' },
   { tool: 'generateRequestSummary', purpose: 'Create a new summary for a request.' },
   { tool: 'getAssetById', purpose: 'Retrieve the details of an asset by specifying the asset ID.' },
@@ -1601,7 +1601,7 @@ const SDP_ON_DEMAND_TOOLS: { tool: string; purpose: string }[] = [
   { tool: 'getChangeApprovalLevel', purpose: 'Retrieves details of a specific approval level for the given change request.' },
   { tool: 'getChangeApprovalLevels', purpose: 'Retrieve all approval levels associated with the specified change ID.' },
   { tool: 'getChangeApprovalList', purpose: 'Retrieve all change approvals for a given approval level in a specific change.' },
-  { tool: 'getChangeDetails', purpose: 'Retrieves full details of a single change record by its ID.' },
+  { tool: 'getChangeDetails', purpose: 'Retrieves full details of a single change record by its ID.\n' },
   { tool: 'getChangeNote', purpose: 'Retrieve a specific note of a change using the change ID and note ID.' },
   { tool: 'getChangeNotes', purpose: 'Retrieves all notes of a change by its change ID.' },
   { tool: 'getChangeTask', purpose: 'Retrieve details of a specific task associated with a change.' },
@@ -1614,7 +1614,8 @@ const SDP_ON_DEMAND_TOOLS: { tool: string; purpose: string }[] = [
   { tool: 'getContractNote', purpose: 'Retrieve a note using its ID from a specific contract.' },
   { tool: 'getContractNotes', purpose: 'Retrieve all notes added under a specified contract.' },
   { tool: 'getContractsList', purpose: 'Use this operation to retrieve a list of all contracts.' },
-  { tool: 'getFieldAllowedValues', purpose: 'Returns valid picklist values. Call only for fields with `display_type: "Pick List"`. Ensures exact value match (e.g. "Open" not "open").' },
+  { tool: 'getCurrentUser', purpose: 'RETURNS the profile of the CURRENTLY LOGGED-IN user: internal\nuser id, name, email, department, site, roles, technician /\nrequester type.\n\nCall this FIRST whenever the request is about the user\nTHEMSELF - "my tickets", "requests I raised", "assigned to\nme", "approvals waiting for me", "create a ticket for me".\nThen use the returned id / email in search_criteria (e.g.\nrequester.id, technician.id) or in create / update payloads.\n\nNeeds no input except the portal. Call at most once per\nsession - reuse the result.\n' },
+  { tool: 'getFieldAllowedValues', purpose: 'RETURNS the allowed values for a DEFAULT (built-in) picklist\n/ lookup field of a module (e.g. status, priority, category,\nurgency, impact of requests).\n\nFor CUSTOM fields (udf_* names under udf_fields in metainfo)\nuse getUdfFieldAllowedValues instead - they live on a\ndifferent URL.\n\nEach module accepts only a fixed whitelist of field names on\nthis URL - a field outside the whitelist returns 404. Get\nvalid field names from getModuleMetainfo first (fields with\ndisplay_type "Pick List"). Use the returned values EXACTLY\n(case-sensitive) in search_criteria and in create / update\npayloads.\n' },
   { tool: 'getListAssets', purpose: 'Retrieve all assets available in the given portal.' },
   { tool: 'getListOfChanges', purpose: 'Retrieves a list of changes from the specified portal.' },
   { tool: 'getListOfProblems', purpose: 'Retrieves a list of all problems in the specified portal.' },
@@ -1631,7 +1632,8 @@ const SDP_ON_DEMAND_TOOLS: { tool: string; purpose: string }[] = [
   { tool: 'getMilestoneTaskWorklog', purpose: 'Retrieve details of a specific worklog entry associated with a task in a milestone under a project.' },
   { tool: 'getMilestoneTaskWorklogs', purpose: 'Retrieves all worklogs for a specific task within a milestone of the given project.' },
   { tool: 'getMilestoneTimesheet', purpose: 'Retrieves the timesheet details for the specified milestone within a project.' },
-  { tool: 'getModuleMetainfo', purpose: 'Returns field metadata. Call BEFORE listRecords when filters are needed. From `metainfo.fields`, use fields where `list_view: true`. - `type: "lookup"` -> append `.name` (e.g. `status` -> `status.name`) - Other types -> use as-is UDF fields: `udf_fields.{key}.{lookup_field}` or `udf_fields.{key}.{name}`. If `display_type: "Pick List"`, call getFieldAllowedValues first.' },
+  { tool: 'getModuleMetainfo', purpose: 'RETURNS the field schema (fields, types, mandatory / editable\n/ list-view flags, lookup targets) of a TOP-LEVEL module\n(requests, changes, users, assets, ...). PRIMARY discovery\ntool: use it to verify a module exists and to learn its\nfields before list / create / update calls.\n\nFor sub-resource schemas (notes of requests) use\ngetSubResourceMetainfo; for third-level schemas (worklogs of\ntasks) use getNestedResourceMetainfo. For any field with\ndisplay_type "Pick List", call getFieldAllowedValues next\n(getUdfFieldAllowedValues for udf_fields).\n' },
+  { tool: 'getNestedResourceMetainfo', purpose: 'RETURNS the field schema of a THIRD-LEVEL resource: worklogs\n/ comments of tasks of requests, approvals of approval_levels,\nchecklistitems of checklists.\n\nCall BEFORE createNestedRecord / updateNestedRecord. Takes\nparent_module, sub_resource, and nested_resource as SEPARATE\nparameters - NO record ids are involved.\n' },
   { tool: 'getProblemApproval', purpose: 'Retrieves the approval details of a specific approval in a problem\'s approval level.' },
   { tool: 'getProblemApprovalLevel', purpose: 'This operation retrieves the details of a specific approval level associated with a problem.' },
   { tool: 'getProblemApprovalLevels', purpose: 'Retrieves a list of approval levels for the specified problem.' },
@@ -1659,6 +1661,8 @@ const SDP_ON_DEMAND_TOOLS: { tool: string; purpose: string }[] = [
   { tool: 'getProjectTaskWorklogs', purpose: 'Retrieve all worklogs associated with a specific task in a project.' },
   { tool: 'getProjectTimesheet', purpose: 'Retrieves the timesheet information for a project using the given project ID.' },
   { tool: 'getPurchaseOrders', purpose: 'Retrieve a list of all purchase orders available in the portal.' },
+  { tool: 'getRecord', purpose: 'RETRIEVES a single record of any module by its INTERNAL ID -\nthe LONG numeric value (15-19 digits) like\n"15283000002873001".\n\nDo NOT use for SHORT ids like "138" or "Request #45" - those\nare DISPLAY ids; use getRecordByDisplayId.\n\nFor sub-records (a specific note on a request) use\ngetSubRecord. Cheaper than listRecords with an id filter.\nOptional `input_data.fields_required` limits returned fields.\n' },
+  { tool: 'getRecordByDisplayId', purpose: 'RETRIEVES a record by its DISPLAY ID - the SHORT number users\nsee in the UI (e.g. "138", "Request #45"). Users normally\nquote display ids; use this tool whenever the user gives a\nshort numeric reference without calling it an internal id.\n\nApplies a display_id filter via the list API and returns the\nmatching record with its INTERNAL id (long, 15-19 digits) for\nuse in follow-up calls (getRecord, updateRecord,\nexecuteRecordAction, sub-record tools).\n\nFor LONG internal ids use getRecord directly.\n' },
   { tool: 'getReleaseApproval', purpose: 'Retrieve the details of a specific approval for a release.' },
   { tool: 'getReleaseApprovalLevels', purpose: 'This operation retrieves the approval levels configured for a given release.' },
   { tool: 'getReleaseApprovals', purpose: 'Retrieve the list of approvals associated with a given approval level in a release.' },
@@ -1685,9 +1689,15 @@ const SDP_ON_DEMAND_TOOLS: { tool: string; purpose: string }[] = [
   { tool: 'getSendRequestApprovalNotificationContent', purpose: 'Fetches the notification content needed for sending a request approval for a specified request, approval level, and approval.' },
   { tool: 'getSolutionById', purpose: 'Retrieve details of a specific solution using the provided Solution ID.' },
   { tool: 'getSolutionsList', purpose: 'This operation retrieves the list of all solutions in the portal.' },
-  { tool: 'listPortals', purpose: 'Returns a list of portals (SDP Cloud instances) that the authenticated user has access to. Use these portal names/IDs in other API calls.' },
-  { tool: 'listRecords', purpose: 'Returns paginated records. Pass `input_data` as URL-encoded JSON string. Call getModuleMetainfo and getFieldAllowedValues first when filtering.' },
-  { tool: 'solutionSearch', purpose: 'Get solution results.' },
+  { tool: 'getSubRecord', purpose: 'RETRIEVES one specific sub-record by its own id: a specific\nnote / task / worklog / conversation of a request, a specific\nmilestone of a project, a specific item of a purchase_order.\n\nRequires the parent record\'s internal id AND the sub-record\'s\ninternal id (both LONG numeric strings). Find sub-record ids\nwith listSubRecords first. For one-level-deeper items use\nlistNestedRecords.\n' },
+  { tool: 'getSubResourceMetainfo', purpose: 'RETURNS the field schema of a SUB-RESOURCE: notes / tasks /\nworklogs / approval_levels of requests, milestones of\nprojects, items of purchase_orders, etc.\n\nCall BEFORE createSubRecord / updateSubRecord to learn the\nwritable and mandatory fields and the exact envelope key.\nTakes parent_module and sub_resource as SEPARATE parameters -\nNO record id is involved (the schema is the same for every\nparent record).\n' },
+  { tool: 'getUdfFieldAllowedValues', purpose: 'RETURNS the allowed values for a CUSTOM user-defined (UDF)\npicklist field of a module. UDF fields appear under\n`udf_fields` in getModuleMetainfo and usually have udf_*\nAPI names (e.g. udf_pick_301).\n\nPass ONLY the UDF field\'s API name in udf_field_name - the\nudf_fields URL segment is already part of this tool\'s path.\nFor DEFAULT (built-in) fields like status or priority use\ngetFieldAllowedValues instead. Use returned values EXACTLY\n(case-sensitive) in search_criteria and create / update\npayloads.\n' },
+  { tool: 'listNestedRecords', purpose: 'LISTS records nested TWO levels under a top record:\n  requests/{id}/tasks/{tid}/worklogs (or comments,\n  attachments, dependencies, history), requests/{id}/\n  approval_levels/{lid}/approvals, requests/{id}/notes/{nid}/\n  attachments, requests/{id}/checklists/{cid}/checklistitems.\n\nUse when the user wants items belonging to a SUB-record (a\ntask\'s worklogs, an approval level\'s approvals, a note\'s\nattachments). Returns 10 newest by default + total_count;\nsame pagination rules as listRecords.\n\nFor approval decisions use manageApproval after finding the\napproval id here.\n' },
+  { tool: 'listPortals', purpose: 'LISTS SDP Cloud portals (id, name, full_name) the user can\naccess.\n\nFALLBACK ONLY. Skip when a portal is already available from\nthe user\'s message, a prior tool call this session, or the\nsystem / project context. Do NOT re-call once a portal is\nestablished.\n\nIf one portal returns, use it silently; if multiple, ask the\nuser to pick.\n' },
+  { tool: 'listRecords', purpose: 'LISTS records of ANY top-level SDP Cloud module - ITSM\n(requests, changes, problems, releases, solutions, projects,\ntasks), assets / CMDB (assets, ci_types, software,\nsoftware_licenses, vendors, products), org (users,\ntechnicians, requesters, groups, sites, departments), config\n(priorities, statuses, categories, request_templates, slas),\npurchase_orders, contracts, and more.\n\nReturns 10 newest records by default (row_count max 50) plus\n`list_info.total_count` - the true total for the query. For\n"how many" questions report total_count - never infer it from\narray length or has_more_rows and never paginate just to\ncount. When the user needs more data, raise row_count or\nfetch further pages via start_index.\n\nIf unsure a module exists, verify with getModuleMetainfo first.\nFor sub-records use listSubRecords. If the internal id is\nknown, prefer getRecord.\n' },
+  { tool: 'listRelatedRecords', purpose: 'LISTS cross-module RELATED records of one record via SDP\'s\nrel/ link API: the releases that caused a request, a change\'s\nchild_changes or parent_change or releases, a problem\'s\nworkarounds / resolutions / fixed_in_releases, a release\'s\ninitiated_by_problems or sub_releases, a project\'s\ninitiated_changes, a contract\'s purchase_orders.\n\nUse when the user asks how records CONNECT across modules\n("which change came from this request", "what releases fix\nthis problem"). Relation names vary by module (see\nrelation_name examples). To read requests LINKED to a\nrequest, use listSubRecords with sub_resource=link_requests\ninstead.\n' },
+  { tool: 'listSubRecords', purpose: 'LISTS sub-records under a parent record: notes / tasks /\nworklogs / conversations / history / approval_levels /\nattachments / reminders of a request; downtimes / stage_data\nof a release; milestones / comments / project_members of a\nproject; items / invoices / payments of a purchase_order;\ncosts / state_history of an asset; versions of a solution.\n\nReturns 10 newest sub-records by default (row_count max 50)\nplus `list_info.total_count` - the true total. For "how many"\nreport total_count - never infer it from array length and\nnever paginate just to count. When the user needs more data,\nraise row_count or fetch further pages via start_index.\n\nAvailability varies by module - verify unknown combos with\ngetModuleMetainfo ("{parent}/{sub}"). For items nested one level\ndeeper (worklogs of a task) use listNestedRecords.\n' },
+  { tool: 'solutionSearch', purpose: 'SEARCHES the SDP knowledge base (RAG) and returns relevant KB\narticles / self-help suggestions for a user\'s question.\n\nUse whenever the user asks a question seeking information or\ntroubleshooting help (e.g. "how do I reset my password",\n"fix slow VPN"). Prefer this for any question-shaped query\nbefore falling back to opening a ticket.\n\nPass the user\'s question verbatim in input_data.question.\n' },
 ];
 
 
@@ -2177,6 +2187,224 @@ function UsecasesAccordionGroup({ usecases }: { usecases: Usecase[] }) {
   );
 }
 
+const BFSI_TOOLS: { tool: string; purpose: string }[] = [
+  { tool: 'createAuthConnection', purpose: 'Creates a single auth connection.' },
+  { tool: 'createAuthConnections', purpose: 'Creates multiple auth connections in batch.' },
+  { tool: 'createAuthService', purpose: 'Creates a single auth service.' },
+  { tool: 'createAuthServiceConfig', purpose: 'Creates a single auth service configuration.' },
+  { tool: 'createAuthServiceConfigs', purpose: 'Creates multiple auth service configurations in batch.' },
+  { tool: 'createAuthServices', purpose: 'Creates multiple auth services in batch.' },
+  { tool: 'createDefinition', purpose: 'Creates a single definition.' },
+  { tool: 'createDefinitionField', purpose: 'Creates a single field for a definition (must be `definition_type: "object"`).  **`field_type` resolution:** - `field_type` must be set to the `api_name` of an existing definition   (obtained by calling `GET /{appname}/definitions` without criteria). - `data_type` is **auto-resolved** to the `definition_type` of the matching definition.   It should still be provided in the request body for clarity, but the server derives it.  **Type-specific properties (based on resolved `data_type`):** - `text_field`: Include `max_length` and optional `properties_meta` with `regex` - `numeric_field` / `long`: Include `properties_meta` with `min_value`, `max_value` - `picklist`: Include `picklist_options` array - `lookup`: Include `lookup_meta` with `lookup_module` and `relatedlist_meta` ' },
+  { tool: 'createDefinitionFields', purpose: 'Creates multiple fields for the specified definition (must be `definition_type: "object"`) in batch.  **`field_type` resolution:** - `field_type` must be set to the `api_name` of an existing definition   (obtained by calling `GET /{appname}/definitions` without criteria). - `data_type` is **auto-resolved** to the `definition_type` of the matching definition.   It should still be provided in the request body for clarity, but the server derives it.  **Type-specific properties (based on resolved `data_type`):** - `text_field`: Include `max_length` and optional `properties_meta` with `regex` - `numeric_field` / `long`: Include `properties_meta` with `min_value`, `max_value` - `picklist`: Include `picklist_options` array - `lookup`: Include `lookup_meta` with `lookup_module` and `relatedlist_meta` ' },
+  { tool: 'createDefinitions', purpose: 'Creates multiple definitions in batch.' },
+  { tool: 'createInvoker', purpose: 'Creates a single invoker module in the specified application.  The request body uses a `data` envelope containing the invoker fields. Only user-provided fields (`name`, `plural_name`, `singular_name`, `api_name`) should be included. The server automatically sets `module_app`, `module_type`, `sequence`, and `presence`. ' },
+  { tool: 'createInvokerOperation', purpose: 'Creates a new invoker operation for a parent Invoker module. The operation defines input/output fields, connection configuration, and request/response mappings for external API calls. ' },
+  { tool: 'createInvokerOperationsByModule', purpose: 'Creates multiple invoker operations in batch for a specific invoker module. The `{api_name}` path parameter identifies the parent invoker module. The `module` field is auto-set from the path parameter for all items. ' },
+  { tool: 'createInvokers', purpose: 'Creates multiple invokers in one request.  For each item, include user-provided fields (`name`, `plural_name`, `singular_name`, `api_name`). The server auto-sets `module_app`, `module_type`, `sequence`, and `presence`. ' },
+  { tool: 'createModuleField', purpose: 'Creates a single field for the specified module.  The request body uses a `data` envelope containing a single field object. `field_type` is the `api_name` of any existing definition (from `GET /{appname}/definitions`). `data_type` is auto-resolved to the matching definition\'s `definition_type` and should not be sent in the request. ' },
+  { tool: 'createModuleFields', purpose: 'Creates one or more fields for the specified module.  The request body uses a `data` envelope that accepts an array of field objects. Each field must include the common required fields (`appfield_module`, `custom_field`, `is_viewable`, `field_type`, `label`, `api_name`). `data_type` is auto-resolved from the definition matching `field_type` and should **not** be sent.  `field_type` is the `api_name` of any existing definition (from `GET /{appname}/definitions`). The resolved `data_type` determines which type-specific properties apply (e.g., `picklist_options`, `lookup_meta`, `properties_meta`). ' },
+  { tool: 'createRecord', purpose: 'Creates a single record in the specified module.  The request body uses a `data` envelope containing a single record object. Required fields depend on the module\'s field configuration.  **Lookup fields**: For fields of type `lookup`, send the **ID (string)** of the referenced record in the target module. ' },
+  { tool: 'createRecords', purpose: 'Creates one or more records in the specified module.  The request body uses a `data` envelope that accepts an array of record objects. Each record must include all required fields as defined by the module\'s field configuration.  **Lookup fields**: For fields of type `lookup`, send the **ID (string)** of the referenced record in the target module. ' },
+  { tool: 'createRelay', purpose: 'Creates a single relay module in the specified application.  The request body uses a `data` envelope containing the relay fields. Only user-provided fields (`name`, `plural_name`, `singular_name`, `api_name`) should be included. The server automatically sets `module_app`, `module_type`, `sequence`, and `presence`. ' },
+  { tool: 'createRelayMapping', purpose: 'Creates a new relay mapping that links a relay module to an invoker operation. The mapping defines how input fields are derived for the invoker operation and how the operation\'s response is mapped back to relay output fields. ' },
+  { tool: 'createRelayOperation', purpose: 'Creates a new relay operation for a parent Relay module. The operation defines input/output relay fields and links to an `invoke_action` (relay_mapping) that determines how the operation executes (which invoker module/operation to call with what field mappings).  The `module` field (relay module api_name) is extracted from the request body on creation. ' },
+  { tool: 'createRelayOperationsByModule', purpose: 'Creates multiple relay operations in batch for a specific relay module. The `{api_name}` path parameter identifies the parent relay module. The `module` field is auto-set from the path parameter for all items. ' },
+  { tool: 'createRelays', purpose: 'Creates multiple relays in one request.  For each item, include user-provided fields (`name`, `plural_name`, `singular_name`, `api_name`). The server auto-sets `module_app`, `module_type`, `sequence`, and `presence`. ' },
+  { tool: 'createRule', purpose: 'Creates a single rule in the specified application. The request body uses a `data` envelope containing a single rule object.  The rule is immediately active after creation. The request must include the rule\'s name, API name, target module, execution type, and at least one evaluator with its criteria and actions.  **Related data auto-included in response:** - `rule_evaluators` -- All evaluators with their actions. - `rule_module` -- The module this rule is bound to. - `rule_app` -- The application this rule belongs to. ' },
+  { tool: 'createRules', purpose: 'Creates one or more rules in the specified application. The request body uses a `data` envelope that accepts an array of rule objects.  Each rule is immediately active after creation. The request must include the rule\'s name, API name, target module, execution type, and at least one evaluator with its criteria and actions.  **Related data auto-included in response:** - `rule_evaluators` -- All evaluators with their actions. - `rule_module` -- The module this rule is bound to. - `rule_app` -- The application this rule belongs to. ' },
+  { tool: 'createSubRule', purpose: 'Creates a single subrule in the specified application. The `is_subrule` field is automatically set to `true`.  SubRules are reusable logic fragments that can be invoked from parent rules via `subrule` action type. ' },
+  { tool: 'createSubRules', purpose: 'Creates one or more subrules in the specified application. The `is_subrule` field is automatically set to `true`.  SubRules are reusable logic fragments that can be invoked from parent rules via `subrule` action type. ' },
+  { tool: 'createVariable', purpose: 'Creates a single variable.' },
+  { tool: 'createVariableGroup', purpose: 'Creates a single variable group.' },
+  { tool: 'createVariableGroups', purpose: 'Creates multiple variable groups in batch.' },
+  { tool: 'createVariables', purpose: 'Creates multiple variables in batch.' },
+  { tool: 'deleteAuthConnection', purpose: 'Deletes a single auth connection by its numeric ID.' },
+  { tool: 'deleteAuthService', purpose: 'Deletes a single auth service by its numeric ID.' },
+  { tool: 'deleteAuthServiceConfig', purpose: 'Deletes a single auth service configuration by its numeric ID.' },
+  { tool: 'deleteDefinition', purpose: 'Deletes a single definition by its numeric ID.' },
+  { tool: 'deleteDefinitionField', purpose: 'Deletes a single field by its numeric ID.' },
+  { tool: 'deleteDefinitionFields', purpose: 'Deletes multiple fields for the specified definition by IDs passed as a query parameter.' },
+  { tool: 'deleteDefinitions', purpose: 'Deletes multiple definitions by IDs passed as a query parameter.' },
+  { tool: 'deleteInvoker', purpose: 'Deletes a single invoker by its unique numeric identifier. The invoker and all associated metadata are permanently removed. ' },
+  { tool: 'deleteInvokerOperationById', purpose: 'Deletes an invoker operation by its unique identifier. This action is irreversible. ' },
+  { tool: 'deleteModuleField', purpose: 'Deletes a single field by its unique numeric identifier within the specified module. ' },
+  { tool: 'deleteRecord', purpose: 'Deletes a single record by its unique numeric identifier within the specified module. The record is permanently removed. ' },
+  { tool: 'deleteRelay', purpose: 'Deletes a single relay by its unique numeric identifier. The relay and all associated metadata are permanently removed. ' },
+  { tool: 'deleteRelayMappingById', purpose: 'Deletes a relay mapping by its unique identifier. This action is irreversible. ' },
+  { tool: 'deleteRelayOperationById', purpose: 'Deletes a relay operation by its unique identifier. This action is irreversible. ' },
+  { tool: 'deleteRelays', purpose: 'Deletes multiple relays by their IDs provided as a comma-separated query parameter. The relays and all associated metadata are permanently removed. ' },
+  { tool: 'deleteRule', purpose: 'Deletes a single rule by its unique identifier. All evaluators and associated actions are deleted along with the rule. ' },
+  { tool: 'deleteRules', purpose: 'Deletes one or more rules by their IDs. Pass the rule IDs as a comma-separated list in the `ids` query parameter.  All evaluators and associated actions are deleted along with the rule. ' },
+  { tool: 'deleteSubRule', purpose: 'Deletes a single subrule by its unique identifier. All evaluators and associated actions are deleted along with the subrule. ' },
+  { tool: 'deleteSubRules', purpose: 'Deletes one or more subrules by their IDs. Pass the subrule IDs as a comma-separated list in the `ids` query parameter. ' },
+  { tool: 'deleteVariable', purpose: 'Deletes a single variable by its ID.' },
+  { tool: 'deleteVariableGroup', purpose: 'Deletes a single variable group by its ID.' },
+  { tool: 'evaluateSingleOperation', purpose: 'Evaluates a business operation on a single record without persisting changes. Returns derived data and `field_properties` for form rendering.  **Note:** Meta modules are not supported. ' },
+  { tool: 'getAuthConnection', purpose: 'Retrieves a single auth connection by its numeric ID.' },
+  { tool: 'getAuthService', purpose: 'Retrieves a single auth service by its numeric ID.' },
+  { tool: 'getAuthServiceConfig', purpose: 'Retrieves a single auth service configuration by its numeric ID.' },
+  { tool: 'getDefinition', purpose: 'Retrieves a single definition by its numeric ID.' },
+  { tool: 'getDefinitionField', purpose: 'Retrieves a single field by its numeric ID.  `field_type` is the `api_name` of a definition, and `data_type` is the resolved `definition_type`. The additional properties present depend on the resolved `data_type`: - `text_field`: Contains `properties_meta` with `regex` - `numeric_field` / `long`: Contains `properties_meta` with `min_value`, `max_value` - `picklist`: Contains `picklist_options` array - `lookup`: Contains `lookup_meta` with `lookup_module` and `relatedlist_meta` ' },
+  { tool: 'getInvoker', purpose: 'Retrieves a single invoker by its unique numeric identifier. The response includes all invoker fields and related application data. ' },
+  { tool: 'getInvokerOperationById', purpose: 'Retrieves a single invoker operation by its unique identifier. Returns the complete operation configuration including basic metadata, input/output field references, connection configuration, and request/response mappings. ' },
+  { tool: 'getModuleField', purpose: 'Retrieves a single field by its unique numeric identifier within the specified module.  The returned `field_type` is the `api_name` of the definition the field was created from; `data_type` is the resolved `definition_type`. Type-specific properties depend on the resolved `data_type`. ' },
+  { tool: 'getRecord', purpose: 'Retrieves a single record by its unique numeric identifier within the specified module. The response includes all record fields. Lookup fields are returned as the referenced record\'s ID (string). ' },
+  { tool: 'getRelay', purpose: 'Retrieves a single relay by its unique numeric identifier. The response includes all relay fields and related application data. ' },
+  { tool: 'getRelayMappingById', purpose: 'Retrieves a single relay mapping by its unique identifier. Returns the complete mapping configuration including: - Basic metadata (name, relay_module, execution_module, execution_action) - Input field derivation mappings (input_fields_mapping) - Output field derivation mappings (output_fields_mapping) - Related data including parent relay and invoker module information ' },
+  { tool: 'getRelayOperationById', purpose: 'Retrieves a single relay operation by its unique identifier. Returns the complete operation configuration including: - Basic metadata (name, api_name, module) - Input and output relay field references - The invoke_action (relay_mapping ID) - Related data including parent relay module and operation actions ' },
+  { tool: 'getRule', purpose: 'Retrieves a single rule by its unique identifier. The response includes the full rule object with all evaluators, criteria, and actions, along with related `rule_module` and `rule_app` data. ' },
+  { tool: 'getSubRule', purpose: 'Retrieves a single subrule by its unique identifier. The response includes the full subrule object with all evaluators, criteria, and actions, along with related `rule_module` and `rule_app` data. ' },
+  { tool: 'getVariable', purpose: 'Retrieves a single variable by its ID.' },
+  { tool: 'getVariableGroup', purpose: 'Retrieves a single variable group by its ID.' },
+  { tool: 'listAllDefinitions', purpose: 'Retrieves all definitions for the application with pagination and filtering support. Includes current app + directory' },
+  { tool: 'listAuthConnections', purpose: 'Retrieves all auth connections for the application with pagination and filtering support.' },
+  { tool: 'listAuthServiceConfigs', purpose: 'Retrieves all auth service configurations for the application with pagination, sorting, filtering, and partitioning support. ' },
+  { tool: 'listAuthServiceConfigsByServiceId', purpose: 'Retrieves all auth service configurations that belong to a specific auth service, filtered by the service\'s numeric ID. Adds an implicit AND criteria on `auth_service_meta_id`. ' },
+  { tool: 'listAuthServices', purpose: 'Retrieves all auth services for the application with pagination, sorting, and filtering support. ' },
+  { tool: 'listDefinitionFields', purpose: 'Retrieves all fields for the specified definition (must be `definition_type: "object"`) with pagination and filtering support.  Each field\'s `field_type` is the `api_name` of an existing definition, and `data_type` is the resolved `definition_type` of that definition. The additional properties present in the response depend on the resolved `data_type`: - `text_field`: Contains `properties_meta` with `regex` - `numeric_field` / `long`: Contains `properties_meta` with `min_value`, `max_value` - `picklist`: Contains `picklist_options` array - `lookup`: Contains `lookup_meta` with `lookup_module` and `relatedlist_meta` ' },
+  { tool: 'listDefinitionsByAppname', purpose: 'Retrieves all definitions for the application with pagination and filtering support.' },
+  { tool: 'listInvokerOperationsByModule', purpose: 'Retrieves all invoker operations belonging to a specific invoker module. Supports cursor-based pagination, sorting, and filter criteria. The `{api_name}` path parameter is the invoker module\'s `api_name`. ' },
+  { tool: 'listInvokers', purpose: 'Retrieves invokers for the given application context. ' },
+  { tool: 'listModuleFields', purpose: 'Retrieves all fields for the specified module with cursor-based pagination, sorting, and filtering support.  Each field\'s `field_type` is the `api_name` of the definition it was created from; `data_type` is the resolved `definition_type` of that definition. Type-specific properties (e.g., `picklist_options`, `lookup_meta`, `properties_meta`) depend on the resolved `data_type`. ' },
+  { tool: 'listModules', purpose: 'Retrieves all modules for the specified application with cursor-based pagination and filtering support.  **Note:** The list endpoint automatically filters to modules with `module_type` in (`entities`, `custom_module`, `subform_module`). Other module types (e.g., `invoker`, `definition`) are excluded. ' },
+  { tool: 'listRecords', purpose: 'Retrieves all records for the specified module with cursor-based pagination, sorting, filtering, and partitioning support.  Records are returned with their field values as defined by the module\'s field configuration. Lookup fields are returned as the referenced record\'s ID (string). ' },
+  { tool: 'listRelayOperationsByModule', purpose: 'Retrieves all relay operations belonging to a specific relay module. Supports cursor-based pagination, sorting, and filter criteria. The `{api_name}` path parameter is the relay module\'s `api_name`. ' },
+  { tool: 'listRelays', purpose: 'Retrieves relays for the given application context. Supports cursor-based pagination, sorting, and filter criteria. ' },
+  { tool: 'listRules', purpose: 'Retrieves all rules for the specified application with cursor-based pagination support.  Each rule in the response includes its `rule_evaluators` with full criteria and action details, along with `rule_module` and `rule_app` related data. ' },
+  { tool: 'listRulesByModule', purpose: 'Retrieves all rules bound to a specific module. This is a convenience endpoint that filters rules by the `rule_module` field.  Results include evaluators, module, and app related data by default. ' },
+  { tool: 'listSubRules', purpose: 'Retrieves all subrules (`is_subrule: true`) for the specified application with cursor-based pagination support.  Each subrule in the response includes its `rule_evaluators` with full criteria and action details, along with `rule_module` and `rule_app` related data. ' },
+  { tool: 'listSubRulesByModule', purpose: 'Retrieves all subrules bound to a specific module. This is a convenience endpoint that filters subrules by the `rule_module` field. ' },
+  { tool: 'listVariableGroups', purpose: 'Retrieves all variable groups for the application with pagination and filtering support.' },
+  { tool: 'listVariables', purpose: 'Retrieves all variables for the application with pagination and filtering support.' },
+  { tool: 'updateAuthConnection', purpose: 'Updates a single auth connection by its numeric ID. Only `connection_name` and `description` can be updated since the connection may already be authorized. ' },
+  { tool: 'updateAuthConnections', purpose: 'Updates multiple auth connections in batch. Only `connection_name` and `description` can be updated since the connection may already be authorized. ' },
+  { tool: 'updateAuthService', purpose: 'Updates a single auth service by its numeric ID. The `id` is identified by the path parameter - do **not** include `id` in the request body. ' },
+  { tool: 'updateAuthServiceConfig', purpose: 'Updates a single auth service configuration by its numeric ID. The `id` is identified by the path parameter - do **not** include `id` in the request body. ' },
+  { tool: 'updateAuthServiceConfigs', purpose: 'Updates multiple auth service configurations in batch. Each item in the `data` array **must** include `id`. ' },
+  { tool: 'updateAuthServices', purpose: 'Updates multiple auth services in batch. Each item in the `data` array **must** include `id`. ' },
+  { tool: 'updateDefinition', purpose: 'Updates a single definition by its numeric ID. Note: `definition_type` cannot be changed after creation. ' },
+  { tool: 'updateDefinitionField', purpose: 'Updates a single field by its numeric ID.  Note: `field_type` and `data_type` cannot be changed after creation. Type-specific properties can be updated based on the field\'s resolved `data_type`. ' },
+  { tool: 'updateDefinitionFields', purpose: 'Updates multiple fields for the specified definition in batch.' },
+  { tool: 'updateDefinitions', purpose: 'Updates multiple definitions in batch.' },
+  { tool: 'updateInvoker', purpose: 'Updates a single existing invoker identified by its ID. Only include fields that need to change in the request body.  The `id` is taken from the URL path parameter. Only user-editable fields can be updated. ' },
+  { tool: 'updateInvokerOperationById', purpose: 'Updates an existing invoker operation by ID. The `module` field is mandatory to identify the parent invoker. Only include other fields that need to change. The `id` is taken from the URL path parameter. ' },
+  { tool: 'updateInvokerOperationsByModule', purpose: 'Updates multiple existing invoker operations in batch for a specific invoker module. Each item in `data` must include the `id` of the operation to update. ' },
+  { tool: 'updateInvokers', purpose: 'Updates multiple existing invokers in one request.  Batch update requires `id` in each item of `data`. ' },
+  { tool: 'updateModuleField', purpose: 'Updates a single existing field identified by its ID. Only include properties that need to change in the request body. The field is identified by the `fieldId` path parameter; the `id` is **not** included in the request body. ' },
+  { tool: 'updateModuleFields', purpose: 'Updates one or more existing fields for the specified module. Each field object in the `data` array **must** include its `id` to identify which field to update. Only include properties that need to change. ' },
+  { tool: 'updateRecord', purpose: 'Updates a single existing record identified by its ID. Only include fields that need to change in the request body. The `id` is taken from the URL path parameter - do **not** include `id` in the request body.  **Lookup fields**: For fields of type `lookup`, send the **ID (string)** of the referenced record in the target module. ' },
+  { tool: 'updateRecords', purpose: 'Updates one or more existing records. Each record object in the `data` array **must** include `id` to identify which record to update. Only include fields that need to change.  **Lookup fields**: For fields of type `lookup`, send the **ID (string)** of the referenced record in the target module. ' },
+  { tool: 'updateRelay', purpose: 'Updates a single existing relay identified by its ID. Only include fields that need to change in the request body.  The `id` is taken from the URL path parameter. Only user-editable fields can be updated. ' },
+  { tool: 'updateRelayMappingById', purpose: 'Updates an existing relay mapping by ID. Only include fields that need to change. The `id` is taken from the URL path parameter. ' },
+  { tool: 'updateRelayOperationById', purpose: 'Updates an existing relay operation by ID. Only include fields that need to change. The `id` is taken from the URL path parameter. ' },
+  { tool: 'updateRelayOperationsByModule', purpose: 'Updates multiple existing relay operations in batch for a specific relay module. Each item in `data` must include the `id` of the operation to update. ' },
+  { tool: 'updateRelays', purpose: 'Updates multiple existing relays in one request.  Batch update requires `id` in each item of `data`. ' },
+  { tool: 'updateRule', purpose: 'Updates a single existing rule identified by its ID. Only include fields that need to change.  **Important:** If `rule_evaluators` is provided, it completely replaces the existing evaluator set. Include all evaluators you want to keep. ' },
+  { tool: 'updateRules', purpose: 'Updates one or more existing rules. Each rule object in the `data` array must include its `id` to identify which rule to update.  **Important:** If `rule_evaluators` is provided, it completely replaces the existing evaluator set. Include all evaluators you want to keep. Evaluators with an existing `id` are updated; evaluators without an `id` are created as new. ' },
+  { tool: 'updateSubRule', purpose: 'Updates a single existing subrule identified by its ID. Only include fields that need to change.  **Important:** If `rule_evaluators` is provided, it completely replaces the existing evaluator set. ' },
+  { tool: 'updateSubRules', purpose: 'Updates one or more existing subrules. Each subrule object in the `data` array must include its `id`.  **Important:** If `rule_evaluators` is provided, it completely replaces the existing evaluator set. ' },
+  { tool: 'updateVariable', purpose: 'Updates a single variable by its ID. Only include fields that need to change. Note: `api_name` cannot be updated once created. ' },
+  { tool: 'updateVariableGroup', purpose: 'Updates a single variable group by its ID. Only include fields that need to change. Note: `api_name` cannot be updated once created. ' },
+  { tool: 'updateVariableGroups', purpose: 'Updates multiple variable groups in batch. Each item in `data` must include `id`. Note: `api_name` cannot be updated once created. ' },
+  { tool: 'updateVariables', purpose: 'Updates multiple variables in batch. Each item in `data` must include `id`. Note: `api_name` cannot be updated once created. ' },
+];
+
+/* ─────────────────────────────────────────────
+   BFSI — Common Usecases
+───────────────────────────────────────────── */
+
+const BFSI_USECASES: Usecase[] = [
+  {
+    id: 'bfsi-loan-module',
+    title: 'Set Up a Loan Application Module from Scratch',
+    subtitle: 'Scaffold the entire data model in one pass: field type definitions, a module, its fields, and seed records.',
+    icon: Shield,
+    overview:
+      'When building a new financial product, an AI agent can scaffold the entire data model in one pass: creating the definitions that describe field types, the module that holds records, and the fields that make up each application entry.',
+    steps: [
+      {
+        label: 'Define the field types',
+        tools: ['BFSI_createDefinitions'],
+        description:
+          'Use createDefinitions to create the reusable type definitions the module will depend on, such as text fields for applicant name, numeric fields for income, and picklists for loan status. Definitions are shared across modules, so batch-creating them upfront avoids duplication later.',
+      },
+      {
+        label: 'Add fields to the module',
+        tools: ['BFSI_createModuleFields'],
+        description:
+          "Call createModuleFields with the new module's api_name and an array of field objects referencing the definitions created in the previous step. The server auto-resolves each field's data_type from its definition, so only the field_type api_name needs to be supplied per field.",
+      },
+      {
+        label: 'Seed initial records',
+        tools: ['BFSI_createRecords'],
+        description:
+          "Use createRecords to batch-insert any seed data into the new module, such as template applications or test records for QA. Lookup fields referencing other modules are passed as the referenced record's string ID.",
+      },
+    ],
+  },
+  {
+    id: 'bfsi-credit-bureau',
+    title: 'Connect to an External Credit Bureau via an Invoker',
+    subtitle: 'Register the auth service, attach credentials, and define the invoker operations that represent each API call.',
+    icon: Shield,
+    overview:
+      'Financial workflows often depend on real-time data from third-party systems. An AI agent can wire up a credit bureau integration by creating the auth service, configuring its credentials, and defining the invoker operations that represent each API call.',
+    steps: [
+      {
+        label: 'Register the auth service',
+        tools: ['BFSI_createAuthService'],
+        description:
+          'Use createAuthService to register the external provider as an auth service in the application. This establishes the identity of the integration before any credentials or connections are attached to it.',
+      },
+      {
+        label: 'Attach the connection credentials',
+        tools: ['BFSI_createAuthConnection'],
+        description:
+          'Call createAuthConnection to create a named connection linked to the auth service, storing the credential configuration. The connection name and description are the only user-editable fields after creation, keeping the credential surface minimal and auditable.',
+      },
+      {
+        label: 'Define the API operations',
+        tools: ['BFSI_createInvokerOperationsByModule'],
+        description:
+          'Use createInvokerOperationsByModule to batch-create all the operations the invoker will expose, such as credit score check, identity verification, and fraud flag lookup. Each operation defines its input/output fields and request/response mappings against the external API.',
+      },
+    ],
+  },
+  {
+    id: 'bfsi-risk-rules',
+    title: 'Automate Risk Rule Evaluation on New Applications',
+    subtitle: 'Build subrules for common checks, parent decision rules, and configurable threshold variables.',
+    icon: Shield,
+    overview:
+      'Compliance and risk teams need decision logic that runs automatically when records are created or updated. An AI agent can build the rule layer that evaluates incoming applications and routes or flags them without manual review.',
+    steps: [
+      {
+        label: 'Create reusable subrules for common checks',
+        tools: ['BFSI_createSubRules'],
+        description:
+          'Use createSubRules to define reusable logic fragments for checks that appear across multiple rules, such as income threshold validation or employment status verification. Subrules can be invoked from parent rules via the subrule action type, keeping the main rule tree clean.',
+      },
+      {
+        label: 'Build the main decision rules',
+        tools: ['BFSI_createRules'],
+        description:
+          'Call createRules to create the parent rules bound to the loan application module. Each rule includes its evaluators with criteria (field conditions) and actions (approve, flag, reject, or invoke a subrule). Rules go live immediately after creation.',
+      },
+      {
+        label: 'Store threshold values as variables',
+        tools: ['BFSI_createVariables'],
+        description:
+          'Use createVariables to store configurable values like minimum credit score or maximum debt-to-income ratio as named variables. Referencing variables in rules instead of hard-coded values means thresholds can be updated with updateVariable without touching the rule logic itself.',
+      },
+    ],
+  },
+];
+
+function BfsiUsecasesAccordion() {
+  return <UsecasesAccordionGroup usecases={BFSI_USECASES} />;
+}
+
 /* ─────────────────────────────────────────────
    About copy per service
 ───────────────────────────────────────────── */
@@ -2198,6 +2426,8 @@ const SERVICE_ABOUT: Partial<Record<string, string>> = {
     "IT service desks that struggle with ticket backlogs, unclear SLAs, and disconnected asset records often find that the root cause is a tool that was not designed to scale with the organization. ManageEngine ServiceDesk Plus Cloud is a full-featured ITSM platform built on ITIL best practices, covering incident management, problem management, change management, asset management, and a self-service portal in a single cloud-delivered solution that gives service desk teams the structure and automation they need to deliver consistent, measurable support.",
   site24x7:
     "Organizations that discover performance degradation or outages only after users report them are already behind — by the time a ticket is raised, the damage to user experience and business operations has already occurred. Site24x7 is ManageEngine's cloud-based observability platform that continuously monitors websites, servers, cloud infrastructure, applications, and network devices, providing real-time alerting, root-cause analysis, and performance dashboards that let operations teams detect and resolve issues before they affect end users.",
+  bfsi:
+    "Zoho BFSI is a low-code platform for building financial services applications on top of Zoho's infrastructure. It gives developers and architects a set of composable primitives: modules and records for structured data, definitions for reusable field types, rules for automated logic, invokers for calling external APIs, and relays for exposing operations inward. Auth services and connections sit on top of all of it, handling credential management for third-party integrations.\n\nThe platform is built for the compliance and integration demands of banking, financial services, and insurance workflows. Rather than stitching together general-purpose tools, teams can model their domain directly in BFSI and wire it to external systems like credit bureaus, payment gateways, and core banking platforms through a structured invoker and relay layer that keeps the integration logic explicit and auditable.",
 };
 
 /* ─────────────────────────────────────────────
@@ -2213,6 +2443,7 @@ const SERVICES = [
   { id: 'vani',            label: 'Vani',             icon: Layers },
   { id: 'sdp-on-demand',   label: 'SDP on Demand',    icon: Headphones },
   { id: 'site24x7',        label: 'Site 24x7',        icon: Activity },
+  { id: 'bfsi',             label: 'BFSI',             icon: Shield },
 ] as const;
 
 type ServiceId = (typeof SERVICES)[number]['id'];
@@ -2237,6 +2468,7 @@ const SERVICE_TOOLS_MAP: Record<ServiceId, { tool: string; purpose: string }[]> 
   vani: VANI_TOOLS,
   'sdp-on-demand': SDP_ON_DEMAND_TOOLS,
   site24x7: SITE24X7_TOOLS,
+  bfsi: BFSI_TOOLS,
 };
 
 interface ThirdPartyServicePanelProps {
@@ -2358,6 +2590,9 @@ export function ThirdPartyServicePanel({ defaultService = 'cloudspend', searchQu
     },
     site24x7: {
       light: 'https://mcp-manual-logos-development.zohostratus.in/Site24x7-icon.svg',
+    },
+    bfsi: {
+      light: 'https://mcp-manual-logos-development.zohostratus.in/Zoho-favicon.svg',
     },
   };
 
@@ -2501,9 +2736,11 @@ export function ThirdPartyServicePanel({ defaultService = 'cloudspend', searchQu
                 <div className="rounded-lg border border-border bg-background p-5 h-full min-h-[280px] flex flex-col gap-3">
                   <h3 className="text-base font-semibold">About {service.label}</h3>
                   {SERVICE_ABOUT[selectedService] ? (
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {SERVICE_ABOUT[selectedService]}
-                    </p>
+                    <div className="flex flex-col gap-3">
+                      {SERVICE_ABOUT[selectedService]!.split('\n\n').map((para, i) => (
+                        <p key={i} className="text-sm text-muted-foreground leading-relaxed">{para}</p>
+                      ))}
+                    </div>
                   ) : (
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       Select a topic or explore the Tool List and Common Usecases tabs to learn more about {service.label} and its MCP capabilities.
@@ -2576,6 +2813,8 @@ export function ThirdPartyServicePanel({ defaultService = 'cloudspend', searchQu
                     <SdpOnDemandUsecasesAccordion />
                   ) : selectedService === 'site24x7' ? (
                     <Site24x7UsecasesAccordion />
+                  ) : selectedService === 'bfsi' ? (
+                    <BfsiUsecasesAccordion />
                   ) : (
                     <p className="text-sm text-muted-foreground leading-relaxed">
                       Common use cases and workflow examples for {service.label} will appear here.
