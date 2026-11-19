@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { BottomActions } from '@/components/BottomActions';
 import { MeatballMenu } from '@/components/MeatballMenu';
+import { totalServices, totalTools } from '@/lib/catalog';
 
 function App() {
   const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'));
@@ -12,6 +13,10 @@ function App() {
 
   const handleExploreZoho = () => {
     navigate('/zoho-services');
+  };
+
+  const handleExploreProgressive = () => {
+    navigate('/progressive-mcp-services');
   };
 
   const handleExploreThirdParty = () => {
@@ -81,12 +86,12 @@ function App() {
           <div className="flex gap-4 sm:gap-6">
             <div className="rounded-xl border border-border bg-card p-6 flex flex-col items-center justify-center gap-2 w-32 h-32 sm:w-36 sm:h-36">
               <Layers className="size-5 text-muted-foreground" />
-              <p className="text-3xl font-bold tracking-tight">61</p>
+              <p className="text-3xl font-bold tracking-tight">{totalServices}</p>
               <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Services</span>
             </div>
             <div className="rounded-xl border border-border bg-card p-6 flex flex-col items-center justify-center gap-2 w-32 h-32 sm:w-36 sm:h-36">
               <Plug className="size-5 text-muted-foreground" />
-              <p className="text-3xl font-bold tracking-tight">10,817</p>
+              <p className="text-3xl font-bold tracking-tight">{totalTools.toLocaleString('en-US')}</p>
               <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Total Tools</span>
             </div>
           </div>
@@ -95,7 +100,7 @@ function App() {
         {/* Service Tiles */}
         <section className="grid grid-cols-1 sm:grid-cols-2 gap-6 animate-slide-up">
           {/* Zoho Service Tile */}
-          <Card className="hover:shadow-md transition-shadow duration-200 border-border">
+          <Card className="hover:shadow-md transition-shadow duration-200 border-border flex flex-col">
             <CardHeader className="pb-3">
               <div className="flex items-center gap-3 mb-1">
                 {dark ? (
@@ -109,15 +114,20 @@ function App() {
                 Discover and execute the right MCP Tools across the Zoho ecosystem.
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <Button className="w-full sm:w-auto" aria-label="Explore Zoho Service" onClick={handleExploreZoho}>
-                Explore Now <ArrowRight className="size-4 ml-2" />
-              </Button>
+            <CardContent className="mt-auto">
+              <div className="inline-grid grid-flow-row lg:grid-flow-col auto-cols-fr gap-3">
+                <Button className="text-[13px]" aria-label="MCP Services" onClick={handleExploreZoho}>
+                  MCP Services <ArrowRight className="size-4" />
+                </Button>
+                <Button variant="outline" className="text-[13px]" aria-label="Progressive MCP Services" onClick={handleExploreProgressive}>
+                  Progressive MCP Services <ArrowRight className="size-4" />
+                </Button>
+              </div>
             </CardContent>
           </Card>
 
           {/* Beyond Zoho Services Tile */}
-          <Card className="hover:shadow-md transition-shadow duration-200 border-border">
+          <Card className="hover:shadow-md transition-shadow duration-200 border-border flex flex-col">
             <CardHeader className="pb-3">
               <div className="flex items-center gap-3 mb-1">
                 <div className="h-10 w-10 rounded-lg bg-muted flex items-center justify-center">
@@ -126,10 +136,10 @@ function App() {
                 <CardTitle className="text-xl">Beyond Zoho Services</CardTitle>
               </div>
               <CardDescription className="text-sm leading-relaxed">
-                Extend your Zoho MCP workflow to contain tools from other services.
+                Extend your Zoho MCP workflow to contain tools from other services. These services can only be configured in Custom MCP servers.
               </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="mt-auto">
               <Button variant="outline" className="w-full sm:w-auto" aria-label="Explore Beyond Zoho Services" onClick={handleExploreThirdParty}>
                 Explore Now <ArrowRight className="size-4 ml-2" />
               </Button>

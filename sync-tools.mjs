@@ -3,8 +3,8 @@
  * sync-tools.mjs
  *
  * Syncs a service's tool list in the panel file against a JSON spec, cleans up
- * any deleted tools from common-usecases, updates homepage counts, and
- * optionally builds & deploys to Catalyst Slate.
+ * any deleted tools from common-usecases, and optionally builds & deploys to
+ * Catalyst Slate. Counts, llms-full.txt and sitemap.xml are derived at build time.
  *
  * Usage:
  *   node sync-tools.mjs --service <serviceId> --file <path-to-json> [--deploy]
@@ -52,6 +52,7 @@ const SERVICE_MAP = {
   'bigin':           { file: 'ZohoServicePanel.tsx', prefix: 'BIGIN'          },
   'catalyst':        { file: 'ZohoServicePanel.tsx', prefix: 'CATALYST'       },
   'zoho-analytics':  { file: 'ZohoServicePanel.tsx', prefix: 'ANALYTICS'      },
+  'zoho-analytics-plus': { file: 'ZohoServicePanel.tsx', prefix: 'ANALYTICSPLUS' },
   'zoho-apptics':    { file: 'ZohoServicePanel.tsx', prefix: 'APPTICS'        },
   'zoho-assist':     { file: 'ZohoServicePanel.tsx', prefix: 'ASSIST'         },
   'zoho-billing':    { file: 'ZohoServicePanel.tsx', prefix: 'BILLING'        },
@@ -66,7 +67,6 @@ const SERVICE_MAP = {
   'zoho-desk':       { file: 'ZohoServicePanel.tsx', prefix: 'DESK'           },
   'zoho-expense':    { file: 'ZohoServicePanel.tsx', prefix: 'EXPENSE'        },
   'zoho-inventory':  { file: 'ZohoServicePanel.tsx', prefix: 'INVENTORY'      },
-  'zoho-invoice':    { file: 'ZohoServicePanel.tsx', prefix: 'INVOICE'        },
   'zoho-learn':      { file: 'ZohoServicePanel.tsx', prefix: 'LEARN'          },
   'zoho-lens':       { file: 'ZohoServicePanel.tsx', prefix: 'LENS'           },
   'zoho-mail':       { file: 'ZohoServicePanel.tsx', prefix: 'MAIL'           },
@@ -89,6 +89,7 @@ const SERVICE_MAP = {
   'zoho-backstage':   { file: 'ZohoServicePanel.tsx', prefix: 'BACKSTAGE'       },
   'zoho-commandcenter': { file: 'ZohoServicePanel.tsx', prefix: 'COMMANDCENTER' },
   'zoho-connect':       { file: 'ZohoServicePanel.tsx', prefix: 'CONNECT'       },
+  'zoho-contracts':     { file: 'ZohoServicePanel.tsx', prefix: 'CONTRACTS'     },
   'zoho-directory':     { file: 'ZohoServicePanel.tsx', prefix: 'DIRECTORY'     },
   'zoho-erp':           { file: 'ZohoServicePanel.tsx', prefix: 'ERP'           },
   'zoho-iot':           { file: 'ZohoServicePanel.tsx', prefix: 'IOT'           },
@@ -219,17 +220,6 @@ const newLines = newTools
 
 content = content.replace(toolsBlockRe, `$1\n${newLines}\n$3`);
 
-// If this is a Zoho service, also update its entry in TOOL_COUNTS so the
-// per-service display count and the App.tsx grand total stay accurate.
-if (svcConfig.file === 'ZohoServicePanel.tsx') {
-  const toolCountRe = new RegExp(`('${serviceId}':\\s*)\\d+`);
-  if (toolCountRe.test(content)) {
-    content = content.replace(toolCountRe, `$1${newTools.length}`);
-    console.log(`   ✓ TOOL_COUNTS['${serviceId}'] updated to ${newTools.length}.`);
-  } else {
-    console.warn(`\n⚠  ATTENTION: Could not find '${serviceId}' in TOOL_COUNTS.\n   ACTION REQUIRED: Manually update TOOL_COUNTS in ZohoServicePanel.tsx.`);
-  }
-}
 // STEP 6 — Usecase cleanup: remove deleted tools from step tools: [...] arrays
 // ─────────────────────────────────────────────────────────────────────────────
 if (toDelete.length > 0) {
@@ -290,91 +280,39 @@ if (toDelete.length > 0) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// STEP 6.5 — Sort SERVICES array alphabetically by label
+// ─────────────────────────────────────────────────────────────────────────────
+const servicesBlockRe = /(const SERVICES\s*=\s*\[)([\s\S]*?)(\]\s*as const)/;
+const servicesMatch   = servicesBlockRe.exec(content);
+if (servicesMatch) {
+  const lines  = servicesMatch[2]
+    .split('\n')
+    .map(l => l.trim())
+    .filter(l => l.startsWith('{') && l.includes('label:'));
+  const sorted = [...lines].sort((a, b) => {
+    const labelA = (a.match(/label:\s*'([^']+)'/) || [])[1] ?? '';
+    const labelB = (b.match(/label:\s*'([^']+)'/) || [])[1] ?? '';
+    return labelA.localeCompare(labelB, undefined, { sensitivity: 'base' });
+  });
+  if (lines.join('\n') !== sorted.join('\n')) {
+    const indented = sorted.map(l => `  ${l}`).join('\n');
+    content = content.replace(servicesBlockRe, `$1\n${indented}\n$3`);
+    console.log('   ✓ SERVICES array re-sorted alphabetically by label.');
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Write the patched panel file
 // ─────────────────────────────────────────────────────────────────────────────
 writeFileSync(panelPath, content, 'utf8');
 console.log(`\n✓ ${svcConfig.file} patched and saved.`);
 
 // ─────────────────────────────────────────────────────────────────────────────
-// STEP 7 — Recount all tools across both panels → update App.tsx
+// STEP 7 — Counts, llms-full.txt and sitemap.xml
 // ─────────────────────────────────────────────────────────────────────────────
-
-/** Count every { tool: entry inside every PREFIX_TOOLS array in a file */
-function countAllToolsInFile(filePath) {
-  const src = readFileSync(filePath, 'utf8');
-  let total = 0;
-  const re  = /const [A-Z0-9_]+_TOOLS[^\[]+\[([\s\S]*?)\];/g;
-  let hit;
-  while ((hit = re.exec(src)) !== null) {
-    total += (hit[1].match(/\{\s*tool:/g) || []).length;
-  }
-  return total;
-}
-
-/** Read TOOL_COUNTS from ZohoServicePanel (Zoho tools are manually curated there) */
-function readZohoToolCounts(filePath) {
-  const src   = readFileSync(filePath, 'utf8');
-  const match = /const TOOL_COUNTS[^=]*=\s*\{([\s\S]*?)\};/.exec(src);
-  if (!match) return { total: 0, serviceCount: 0 };
-  const vals  = [...match[1].matchAll(/:\s*(\d+)/g)].map(x => parseInt(x[1], 10));
-  return { total: vals.reduce((a, b) => a + b, 0), serviceCount: vals.length };
-}
-
-/** Count services from a file's SERVICES = [...] as const block */
-function countServicesInFile(filePath) {
-  const src   = readFileSync(filePath, 'utf8');
-  const match = /const SERVICES\s*=\s*\[([\s\S]*?)\]\s*as const/.exec(src);
-  if (!match) return 0;
-  return (match[1].match(/\{\s*id:/g) || []).length;
-}
-
-const thirdPartyFile = resolve(COMPONENTS_DIR, 'ThirdPartyServicePanel.tsx');
-const zohoFile       = resolve(COMPONENTS_DIR, 'ZohoServicePanel.tsx');
-
-const thirdPartyTools    = countAllToolsInFile(thirdPartyFile);
-const { total: zohoTools, serviceCount: zohoSvcCount } = readZohoToolCounts(zohoFile);
-const thirdPartySvcCount = countServicesInFile(thirdPartyFile);
-
-const grandTotal    = zohoTools + thirdPartyTools;
-const totalServices = zohoSvcCount + thirdPartySvcCount;
-
-console.log(`\n── Updated counts ${'─'.repeat(32)}`);
-console.log(`   Zoho services     : ${zohoSvcCount}  →  ${zohoTools} tools`);
-console.log(`   Third-party svcs  : ${thirdPartySvcCount}  →  ${thirdPartyTools} tools`);
-console.log(`   ─────────────────────────────────`);
-console.log(`   Total services    : ${totalServices}`);
-console.log(`   Total tools       : ${grandTotal}`);
-
-// Patch App.tsx — Services counter
-let appContent = readFileSync(APP_TSX, 'utf8');
-
-appContent = appContent.replace(
-  /(text-3xl font-bold tracking-tight")(>[\d,]+<)(\/p>\s*<span[^>]*>Services)/,
-  `$1>${totalServices}<$3`
-);
-// Total Tools counter
-appContent = appContent.replace(
-  /(text-3xl font-bold tracking-tight")(>[\d,]+<)(\/p>\s*<span[^>]*>Total Tools)/,
-  `$1>${grandTotal.toLocaleString('en-US')}<$3`
-);
-
-writeFileSync(APP_TSX, appContent, 'utf8');
-
-// Verify the counters were actually written correctly
-const writtenApp     = readFileSync(APP_TSX, 'utf8');
-const hasNewServices = writtenApp.includes(`>${totalServices}<`);
-const hasNewTools    = writtenApp.includes(`>${grandTotal.toLocaleString('en-US')}<`);
-
-if (!hasNewServices || !hasNewTools) {
-  console.warn(
-    `\n⚠  ATTENTION: App.tsx counter update may have failed.` +
-    (!hasNewServices ? `\n   - Services counter (${totalServices}) was NOT found after write.` : '') +
-    (!hasNewTools    ? `\n   - Tools counter (${grandTotal.toLocaleString('en-US')}) was NOT found after write.` : '') +
-    `\n   ACTION REQUIRED: Manually update the counters in App.tsx.`
-  );
-} else {
-  console.log(`✓ App.tsx updated.`);
-}
+// Tool counts and homepage totals are derived from the tool arrays at runtime, and
+// llms-full.txt + sitemap.xml are regenerated by `npm run build`. Nothing to patch here.
+console.log('\n✓ Counts, llms-full.txt and sitemap.xml update automatically on the next build.');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // STEP 8 — Build + deploy (only if --deploy flag is passed)

@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && mkdir -p dist/.catalyst && printf 'framework = \"react-vite\"\\ndeployment_name = \"default\"\\n' > dist/.catalyst/slate-config.toml",
+    "build": "tsc -b && node scripts/check-usecases.mjs && vite build && npm run site-files && mkdir -p dist/.catalyst && printf 'framework = \"react-vite\"\\ndeployment_name = \"default\"\\n\\n[[redirects]]\\nfrom = \"/*\"\\nto = \"/index.html\"\\nstatus = 200\\n' > dist/.catalyst/slate-config.toml",
     "lint": "NODE_OPTIONS=--max-old-space-size=512 eslint src/ --format stylish",
     "preview": "vite preview",
-    "typecheck": "tsc -b --noEmit"
+    "typecheck": "tsc -b --noEmit",
+    "site-files": "vite build --ssr scripts/generate-site-files.ts --outDir node_modules/.cache/site-files --emptyOutDir --logLevel warn && node node_modules/.cache/site-files/generate-site-files.js"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
