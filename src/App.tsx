@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sun, Moon, ArrowRight, Layers, Plug, Globe } from 'lucide-react';
+import { Sun, Moon, ArrowRight, Layers, Plug, Globe, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { BottomActions } from '@/components/BottomActions';
 import { MeatballMenu } from '@/components/MeatballMenu';
 import { totalServices, totalTools } from '@/lib/catalog';
+import { PROGRESSIVE_SERVICE_IDS } from '@/lib/progressive';
 
 function App() {
   const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'));
@@ -83,16 +84,24 @@ function App() {
 
         {/* Counter Section */}
         <section className="flex justify-center animate-slide-up">
-          <div className="flex gap-4 sm:gap-6">
-            <div className="rounded-xl border border-border bg-card p-6 flex flex-col items-center justify-center gap-2 w-32 h-32 sm:w-36 sm:h-36">
+          <div className="counter-row grid grid-cols-3 gap-3 w-full sm:flex sm:w-auto sm:gap-6">
+            <div className="counter-tile rounded-xl border border-border bg-card px-2 sm:px-3 py-4 flex flex-col items-center justify-center gap-2 min-h-32 sm:w-36 sm:h-36">
               <Layers className="size-5 text-muted-foreground" />
-              <p className="text-3xl font-bold tracking-tight">{totalServices}</p>
-              <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Services</span>
+              <p className="text-2xl sm:text-3xl font-bold tracking-tight">{totalServices}</p>
+              <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wide leading-tight text-center text-muted-foreground">Services</span>
             </div>
-            <div className="rounded-xl border border-border bg-card p-6 flex flex-col items-center justify-center gap-2 w-32 h-32 sm:w-36 sm:h-36">
+            <div className="counter-tile rounded-xl border border-border bg-card px-2 sm:px-3 py-4 flex flex-col items-center justify-center gap-2 min-h-32 sm:w-36 sm:h-36">
+              <span className="progressive-icon relative inline-flex" aria-hidden="true">
+                <Layers className="size-5 text-muted-foreground" />
+                <Sparkles className="absolute -top-1.5 -right-2 size-3 text-muted-foreground" />
+              </span>
+              <p className="text-2xl sm:text-3xl font-bold tracking-tight">{PROGRESSIVE_SERVICE_IDS.length}</p>
+              <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wide leading-tight text-center text-muted-foreground">Progressive MCP Compatible</span>
+            </div>
+            <div className="counter-tile rounded-xl border border-border bg-card px-2 sm:px-3 py-4 flex flex-col items-center justify-center gap-2 min-h-32 sm:w-36 sm:h-36">
               <Plug className="size-5 text-muted-foreground" />
-              <p className="text-3xl font-bold tracking-tight">{totalTools.toLocaleString('en-US')}</p>
-              <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Total Tools</span>
+              <p className="text-2xl sm:text-3xl font-bold tracking-tight">{totalTools.toLocaleString('en-US')}</p>
+              <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wide leading-tight text-center text-muted-foreground">Total Tools</span>
             </div>
           </div>
         </section>

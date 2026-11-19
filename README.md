@@ -6,8 +6,9 @@ An interactive web reference for exploring MCP (Model Context Protocol) tools ac
 
 The Zoho MCP Interactive Manual gives developers and AI practitioners a structured, searchable view of every MCP tool exposed by Zoho and connected services. It is designed to complement the Zoho MCP server and help teams quickly identify which tools to use for a given workflow.
 
-- **61 services** covered across Zoho and Beyond Zoho
-- **10,817+ MCP tools** documented with names and purposes
+- **77 services** covered across Zoho (65) and Beyond Zoho (12)
+- **16,288 MCP tools** documented with names and purposes
+- **21 Progressive MCP compatible services**, browsable as a tile grid and tagged on their service pages
 - Per-service **About**, **Tool List**, and **Common Usecases** tabs
 - Full-text **search** across service names and tool names
 - **Light and dark mode** with branded service logos
@@ -15,10 +16,17 @@ The Zoho MCP Interactive Manual gives developers and AI practitioners a structur
 ## Covered Services
 
 ### Zoho Services
-Bigin, Catalyst by Zoho, Zoho Analytics, Zoho Apptics, Zoho Assist, Zoho Backstage, Zoho Billing, Zoho Bookings, Zoho Books, Zoho Calendar, Zoho Cliq, Zoho CommandCenter, Zoho Commerce, Zoho Connect, Zoho Creator, Zoho CRM, Zoho Dataprep, Zoho Desk, Zoho Directory, Zoho ERP, Zoho Expense, Zoho Inventory, Zoho Invoice, Zoho IoT, Zoho Learn, Zoho Lens, Zoho Mail, Zoho Meeting, Zoho Notebook, Zoho Office Integrator, Zoho One, Zoho PageSense, Zoho Payments, Zoho Payroll, Zoho People, Zoho POS, Zoho Procurement, Zoho Projects, Zoho Quartz, Zoho Recruit, Zoho SalesIQ, Zoho Sheet, Zoho Show, Zoho Sign, Zoho Social, Zoho Sprints, Zoho Survey, Zoho Tables, Zoho Vertical Studio, Zoho Webinar, Zoho WorkDrive, Zoho Writer
+Bigin, Catalyst by Zoho, Zoho Analytics, Zoho Analytics Plus, Zoho Apptics, Zoho Assist, Zoho Backstage, Zoho Billing, Zoho Bookings, Zoho Books, Zoho Calendar, Zoho Campaigns, Zoho Cliq, Zoho CommandCenter, Zoho Commerce, Zoho Community Spaces, Zoho Connect, Zoho Contracts, Zoho Creator, Zoho CRM, Zoho Dataprep, Zoho Desk, Zoho Directory, Zoho ERP, Zoho Expense, Zoho Forms, Zoho FSM, Zoho Inventory, Zoho IoT, Zoho Learn, Zoho Lens, Zoho Logs, Zoho Mail, Zoho Meeting, Zoho Notebook, Zoho Office Integrator, Zoho One, Zoho PageSense, Zoho Payments, Zoho Payroll, Zoho People, Zoho POS, Zoho Procurement, Zoho Projects, Zoho Quartz, Zoho Recruit, Zoho Repository, Zoho RouteIQ, Zoho SalesIQ, Zoho Scanner, Zoho Sheet, Zoho Show, Zoho Sign, Zoho Sites, Zoho Social, Zoho Solo, Zoho Sprints, Zoho Survey, Zoho Tables, Zoho Vertical Studio, Zoho Voice, Zoho Webinar, Zoho Workdrive, Zoho Writer, Zoho ZiaAgents
+
+### Progressive MCP Compatible Services
+These can be added to a Progressive MCP server. They are listed at `/#/progressive-mcp-services` and carry a "Progressive MCP Server Compatible" tag on their service pages:
+
+Zoho CRM, Zoho Cliq, Zoho Desk, Zoho Books, Zoho POS, Zoho Scanner, Zoho Show, Zoho Sites, Zoho Sprints, Zoho Analytics Plus, Zoho Solo, Zoho Analytics, Zoho Campaigns, Zoho CommandCenter, Zoho Forms, Zoho Notebook, Zoho Quartz, Zoho Social, Zoho Contracts, Zoho Backstage, Zoho People
 
 ### Beyond Zoho Services
-BFSI, CloudSpend, EndpointCentral, Log360 Cloud, MDM (Mobile Device Manager Plus), Qntrl, Vani, SDP on Demand, Site 24x7
+These can only be configured in Custom MCP servers:
+
+Arattai Business, BFSI, CloudSpend, EndpointCentral, Log360Cloud, MDM, Qntrl, SaaS Manager Plus, SDP on Demand, Site 24x7, TrainerCentral, Vani
 
 ## Tech Stack
 
@@ -55,14 +63,28 @@ Opens at `http://localhost:5173`
 ```bash
 pnpm build
 ```
-Produces an optimised static bundle in `dist/` and automatically writes `dist/.catalyst/slate-config.toml` for Slate deployment.
+The build runs, in order:
+1. `tsc -b` type check
+2. `scripts/check-usecases.mjs`, which fails the build if any Common Usecase references a tool that is not in that service's tool list
+3. `vite build`, the static bundle in `dist/`
+4. `scripts/generate-site-files.ts`, which writes `dist/llms-full.txt` and `dist/sitemap.xml` and a crawler-readable service list into `dist/index.html`
+5. `dist/.catalyst/slate-config.toml` for Slate deployment
+
+### Preview the production build
+```bash
+pnpm build
+pnpm preview -- --port 4173
+```
+Serves `dist/` (the exact folder Slate deploys) at `http://localhost:4173`.
 
 ## Deploying to Catalyst Slate
 
 ```bash
 pnpm build
-catalyst deploy slate
+catalyst deploy slate zoho-mcp-manual -m "<short message>"
 ```
+
+> Keep the `-m` message short. A long message fails with `HTTP Error: 400, Please check if the length of the input is in the correct range`.
 
 > **One-time setup:** Slate must be activated in the Catalyst console before the first deploy — Console → your project → Slate → *Start Exploring*.
 
@@ -85,8 +107,16 @@ code/
 │   │   └── ui/                          # shadcn/ui primitives
 │   ├── pages/
 │   │   ├── ZohoServicesPage.tsx
-│   │   └── BeyondZohoServicesPage.tsx
+│   │   ├── BeyondZohoServicesPage.tsx
+│   │   └── ProgressiveServicesPage.tsx  # Progressive MCP compatible service tiles
+│   ├── lib/
+│   │   ├── catalog.ts                   # Service and tool totals for the homepage counters
+│   │   ├── progressive.ts               # The Progressive MCP compatible service list (edit here only)
+│   │   └── slug.ts                      # Service label → URL slug
 │   └── App.tsx                          # Home / landing page
+├── scripts/
+│   ├── check-usecases.mjs     # Build-time usecase/tool reference check
+│   └── generate-site-files.ts # Build-time llms-full.txt, sitemap.xml and crawler list
 ├── sync-tools.mjs       # Official tool to sync a service's tool list from a JSON spec
 ├── automation-scripts/  # Python utilities for batch operations and maintenance
 │   ├── README.md            # Documentation for automation scripts
@@ -116,7 +146,17 @@ Python scripts for batch operations and maintenance tasks:
 
 See [automation-scripts/README.md](automation-scripts/README.md) for detailed usage instructions.
 
-## Recent Updates (July 2026)
+## Recent Updates (November 2026)
+
+- Added the **Progressive MCP Compatible Services** page (`/#/progressive-mcp-services`): 21 services as tiles that enlarge on hover, show an "Explore MCP tool list" button and open that service's tool list
+- Added a **Progressive MCP Server Compatible** tag beside the service name on each of those 21 service pages
+- Homepage: the Zoho Services card now has two buttons, **MCP Services** and **Progressive MCP Services**, and a third counter tile shows the **Progressive MCP Compatible** count between Services and Total Tools
+- Added **Zoho Contracts** as a new Zoho service (38 tools, 3 usecases)
+- Moved **Analytics Plus** from Beyond Zoho into Zoho Services as **Zoho Analytics Plus**; the old Beyond Zoho link redirects to the new page
+- Updated the Beyond Zoho card text: these services can only be configured in Custom MCP servers
+- Homepage totals are now computed from the tool lists: **77 services**, **16,288 tools**
+
+## Earlier Updates (July 2026)
 
 - Added **Zoho Quartz** as a new service (3 tools) — privacy-first issue management and visual feedback tool; covers `getFeedbackDetails`, `getFeedbackConsoleLogs`, and `getFeedbackNetworkRequests` with 3 real-world usecases
 - Added **BFSI** as a new Beyond Zoho service (120 tools) — low-code platform for building financial services applications; covers modules, definitions, rules, invokers, relays, auth services, and variables with 3 real-world usecases
@@ -134,7 +174,8 @@ See [automation-scripts/README.md](automation-scripts/README.md) for detailed us
 - **Search** — filter services and tools in real time from any page
 - **Collapsible sidebar** — more room for content when browsing tools
 - **Common Usecases** — step-by-step scenarios showing which tools to chain together for real tasks
-- **Responsive** — works on desktop and tablet
+- **Progressive MCP tiles** — browse the Progressive MCP compatible services as a tile grid
+- **Responsive** — works on desktop, tablet and phone
 
 ## React Compiler
 
